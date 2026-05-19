@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>When Rain Becomes Risk</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7fb;
+      margin: 0;
+      color: #222;
+    }
+
+    .page {
+      max-width: 1150px;
+      margin: auto;
+      padding: 42px 28px;
+    }
+
+    h1 {
+      font-size: 46px;
+      margin-bottom: 8px;
+      letter-spacing: -1px;
+    }
+
+    h2 {
+      font-size: 26px;
+      margin-top: 44px;
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      color: #555;
+      max-width: 900px;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    .section-text {
+      font-size: 16px;
+      color: #555;
+      max-width: 900px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .chart-card {
+      background: white;
+      border-radius: 18px;
+      padding: 26px;
+      margin-bottom: 30px;
+      box-shadow: 0 6px 22px rgba(0,0,0,0.07);
+      overflow-x: auto;
+    }
+
+    .grid-two {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .note-box {
+      background: #fff6df;
+      border-left: 5px solid #f0b429;
+      padding: 14px 18px;
+      border-radius: 8px;
+      max-width: 900px;
+      color: #5c4300;
+      font-size: 15px;
+      margin-bottom: 28px;
+      line-height: 1.6;
+    }
+
+    footer {
+      border-top: 1px solid #ddd;
+      margin-top: 52px;
+      padding-top: 18px;
+      color: #666;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 900px) {
+      .grid-two {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 36px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <h1>When Rain Becomes Risk</h1>
+
+    <p class="subtitle">
+      This visualisation explores Malaysia’s precipitation patterns and how heavier rainfall
+      connects to flood-related disaster risk. It focuses on where rainfall is highest,
+      when rainfall is most intense, and how flood disasters appear across time.
+    </p>
+
+    <div class="note-box">
+      This project explores a relationship, not direct causation. Flood impacts are also affected
+      by drainage, land use, urbanisation, river systems, and population exposure.
+    </div>
+
+    <h2>1. Rainfall is not evenly distributed across Malaysia</h2>
+
+    <p class="section-text">
+      These maps show different ways of understanding rainfall across Malaysian states.
+    </p>
+
+    <div class="chart-card"><div id="map_avg_rainfall"></div></div>
+    <div class="chart-card"><div id="map_normal_rainfall"></div></div>
+    <div class="chart-card"><div id="map_difference_rainfall"></div></div>
+    <div class="chart-card"><div id="map_rainfall_ratio"></div></div>
+    <div class="chart-card"><div id="map_rainfall_category"></div></div>
+
+    <h2>2. Which states are wetter?</h2>
+
+    <p class="section-text">
+      These charts compare rainfall levels directly between Malaysian state codes.
+    </p>
+
+    <div class="grid-two">
+      <div class="chart-card"><div id="bar_wettest_states"></div></div>
+      <div class="chart-card"><div id="lollipop_difference"></div></div>
+    </div>
+
+    <div class="chart-card"><div id="scatter_actual_normal"></div></div>
+
+    <h2>3. Rainfall changes by month</h2>
+
+    <p class="section-text">
+      Monthly rainfall patterns show when rainfall tends to be stronger.
+    </p>
+
+    <div class="chart-card"><div id="line_monthly_rainfall"></div></div>
+    <div class="chart-card"><div id="heatmap_state_month"></div></div>
+
+    <h2>4. Rainfall matters because floods dominate the disaster story</h2>
+
+    <p class="section-text">
+      The disaster charts show why rainfall is important for understanding risk in Malaysia.
+    </p>
+
+    <div class="grid-two">
+      <div class="chart-card"><div id="bar_disaster_types"></div></div>
+      <div class="chart-card"><div id="line_floods_over_time"></div></div>
+    </div>
+
+    <footer>
+      Author: Faraz Rasool. Created for FIT2179 Data Visualisation 2, 2026.
+      Visualisations created using Vega-Lite. Data sources: rainfall and natural disaster datasets.
+    </footer>
+
+  </div>
+
+  <script>
+    const charts = [
+      ["#map_avg_rainfall", "js/map_avg_rainfall.json"],
+      ["#map_normal_rainfall", "js/map_normal_rainfall.json"],
+      ["#map_difference_rainfall", "js/map_difference_rainfall.json"],
+      ["#map_rainfall_ratio", "js/map_rainfall_ratio.json"],
+      ["#map_rainfall_category", "js/map_rainfall_category.json"],
+      ["#bar_wettest_states", "js/bar_wettest_states.json"],
+      ["#lollipop_difference", "js/lollipop_difference.json"],
+      ["#scatter_actual_normal", "js/scatter_actual_normal.json"],
+      ["#line_monthly_rainfall", "js/line_monthly_rainfall.json"],
+      ["#heatmap_state_month", "js/heatmap_state_month.json"],
+      ["#bar_disaster_types", "js/bar_disaster_types.json"],
+      ["#line_floods_over_time", "js/line_floods_over_time.json"]
+    ];
+
+    charts.forEach(([div, file]) => {
+      vegaEmbed(div, file, {"actions": false}).catch(error => {
+        console.error("Error loading", file, error);
+      });
+    });
+  </script>
+
+</body>
+</html>

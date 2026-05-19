@@ -1,0 +1,12 @@
+Category,Total Disasters (#)
+Drought,2
+Earthquake,2
+Epidemic,11
+Flood,70
+Mass movement (dry),1
+Mass movement (wet),5
+Storm,7
+Wildfire,4
+
+# Dictionary
+# Col0: 0="Drought"|1="Earthquake"|2="Epidemic"|3="Flood"|4="Mass movement (dry)"|5="Mass movement (wet)"|6="Storm"|7="Wildfire"

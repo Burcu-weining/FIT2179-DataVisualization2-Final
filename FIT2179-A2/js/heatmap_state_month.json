@@ -1,57 +1,50 @@
 {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {
-    "text": "Rainfall Heatmap by State and Month",
-    "fontSize": 18,
-    "anchor": "start"
-  },
-  "width": 720,
-  "height": 420,
-  "data": {
-    "url": "data/state_monthly_rainfall.csv"
-  },
-  "mark": {
-    "type": "rect",
-    "tooltip": true
-  },
-  "encoding": {
-    "x": {
-      "field": "month",
-      "type": "ordinal",
-      "title": "Month"
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+      "text": "Monthly Rainfall Pattern by State",
+      "subtitle": "Darker cells show states and months with higher average rainfall.",
+      "fontSize": 18,
+      "subtitleFontSize": 12,
+      "anchor": "start"
     },
-    "y": {
-      "field": "state",
-      "type": "nominal",
-      "title": "State"
+    "width": 720,
+    "height": 420,
+    "data": {
+      "url": "data/state_monthly_rainfall_clean.csv"
     },
-    "color": {
-      "field": "avg_rainfall_mm",
-      "type": "quantitative",
-      "scale": {
-        "scheme": "blues"
+    "mark": {
+      "type": "rect",
+      "tooltip": true
+    },
+    "encoding": {
+      "x": {
+        "field": "month_name",
+        "type": "ordinal",
+        "title": "Month",
+        "sort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
       },
-      "title": "Average rainfall"
-    },
-    "tooltip": [
-      {
+      "y": {
         "field": "state",
-        "type": "nominal"
+        "type": "nominal",
+        "title": "State"
       },
-      {
-        "field": "month",
-        "type": "ordinal"
-      },
-      {
+      "color": {
         "field": "avg_rainfall_mm",
         "type": "quantitative",
-        "format": ".2f"
+        "title": "Avg rainfall",
+        "scale": {
+          "scheme": "blues"
+        }
+      },
+      "tooltip": [
+        {"field": "state", "type": "nominal", "title": "State"},
+        {"field": "month_name", "type": "ordinal", "title": "Month"},
+        {"field": "avg_rainfall_mm", "type": "quantitative", "title": "Average rainfall", "format": ".2f"}
+      ]
+    },
+    "config": {
+      "view": {
+        "stroke": null
       }
-    ]
-  },
-  "config": {
-    "view": {
-      "stroke": null
     }
   }
-}

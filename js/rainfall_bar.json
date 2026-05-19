@@ -1,0 +1,76 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  
+    "title": {
+      "text": "Average Rainfall by Malaysian State",
+      "subtitle": "Recent average rainfall calculated from the rainfall dataset",
+      "fontSize": 18,
+      "subtitleFontSize": 12,
+      "anchor": "start"
+    },
+  
+    "width": 700,
+    "height": 400,
+  
+    "data": {
+      "url": "data/state_rainfall_map.csv"
+    },
+  
+    "mark": {
+      "type": "bar",
+      "tooltip": true
+    },
+  
+    "encoding": {
+      "x": {
+        "field": "avg_rainfall_mm",
+        "type": "quantitative",
+        "title": "Average rainfall (mm)"
+      },
+      "y": {
+        "field": "shapeISO",
+        "type": "nominal",
+        "title": "State code",
+        "sort": "-x"
+      },
+      "color": {
+        "field": "avg_rainfall_mm",
+        "type": "quantitative",
+        "scale": {
+          "scheme": "blues"
+        },
+        "legend": null
+      },
+      "tooltip": [
+        {
+          "field": "shapeISO",
+          "type": "nominal",
+          "title": "State code"
+        },
+        {
+          "field": "avg_rainfall_mm",
+          "type": "quantitative",
+          "title": "Average rainfall (mm)",
+          "format": ".2f"
+        },
+        {
+          "field": "avg_normal_rainfall_mm",
+          "type": "quantitative",
+          "title": "Normal rainfall (mm)",
+          "format": ".2f"
+        },
+        {
+          "field": "difference_from_normal",
+          "type": "quantitative",
+          "title": "Difference from normal",
+          "format": ".2f"
+        }
+      ]
+    },
+  
+    "config": {
+      "view": {
+        "stroke": null
+      }
+    }
+  }

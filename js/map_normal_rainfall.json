@@ -1,0 +1,95 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Map 2: Normal Rainfall Across Malaysia",
+    "fontSize": 18,
+    "anchor": "start"
+  },
+  "width": 720,
+  "height": 430,
+  "data": {
+    "url": "data/malaysia_states.geojson",
+    "format": {
+      "type": "json",
+      "property": "features"
+    }
+  },
+  "transform": [
+    {
+      "lookup": "properties.shapeISO",
+      "from": {
+        "data": {
+          "url": "data/state_rainfall_summary.csv"
+        },
+        "key": "shapeISO",
+        "fields": [
+          "avg_rainfall_mm",
+          "avg_normal_rainfall_mm",
+          "difference_from_normal",
+          "rainfall_ratio",
+          "rainfall_status",
+          "rainfall_category"
+        ]
+      }
+    }
+  ],
+  "projection": {
+    "type": "mercator",
+    "center": [
+      109,
+      4
+    ],
+    "scale": 1100
+  },
+  "mark": {
+    "type": "geoshape",
+    "stroke": "white",
+    "strokeWidth": 0.7
+  },
+  "encoding": {
+    "color": {
+      "field": "avg_normal_rainfall_mm",
+      "type": "quantitative",
+      "title": "Normal rainfall",
+      "scale": {
+        "scheme": "tealblues"
+      }
+    },
+    "tooltip": [
+      {
+        "field": "properties.shapeName",
+        "type": "nominal",
+        "title": "State"
+      },
+      {
+        "field": "avg_rainfall_mm",
+        "type": "quantitative",
+        "title": "Average rainfall",
+        "format": ".2f"
+      },
+      {
+        "field": "avg_normal_rainfall_mm",
+        "type": "quantitative",
+        "title": "Normal rainfall",
+        "format": ".2f"
+      },
+      {
+        "field": "difference_from_normal",
+        "type": "quantitative",
+        "title": "Difference",
+        "format": ".2f"
+      },
+      {
+        "field": "rainfall_ratio",
+        "type": "quantitative",
+        "title": "Rainfall ratio",
+        "format": ".2f"
+      }
+    ]
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

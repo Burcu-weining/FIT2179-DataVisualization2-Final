@@ -1,0 +1,73 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+      "text": "Monthly Rainfall Map by State",
+      "subtitle": "Use the dropdown to see how rainfall changes by month.",
+      "fontSize": 18,
+      "subtitleFontSize": 12,
+      "anchor": "start"
+    },
+    "width": 720,
+    "height": 450,
+    "params": [
+      {
+        "name": "SelectedMonth",
+        "value": 1,
+        "bind": {
+          "input": "select",
+          "options": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+          "labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+          "name": "Select month: "
+        }
+      }
+    ],
+    "data": {
+      "url": "data/malaysia_states.geojson",
+      "format": {
+        "type": "geojson"
+      }
+    },
+    "transform": [
+      {
+        "lookup": "properties.shapeISO",
+        "from": {
+          "data": {
+            "url": "data/state_monthly_rainfall_clean.csv"
+          },
+          "key": "shapeISO",
+          "fields": ["state", "month", "month_name", "avg_rainfall_mm"]
+        }
+      },
+      {
+        "filter": "datum.month == SelectedMonth"
+      }
+    ],
+    "projection": {
+      "type": "mercator"
+    },
+    "mark": {
+      "type": "geoshape",
+      "stroke": "white",
+      "strokeWidth": 0.8
+    },
+    "encoding": {
+      "color": {
+        "field": "avg_rainfall_mm",
+        "type": "quantitative",
+        "title": "Avg rainfall",
+        "scale": {
+          "scheme": "blues"
+        }
+      },
+      "tooltip": [
+        {"field": "properties.shapeName", "type": "nominal", "title": "State"},
+        {"field": "month_name", "type": "ordinal", "title": "Month"},
+        {"field": "avg_rainfall_mm", "type": "quantitative", "title": "Average rainfall", "format": ".2f"}
+      ]
+    },
+    "config": {
+      "view": {
+        "stroke": null
+      }
+    }
+  }

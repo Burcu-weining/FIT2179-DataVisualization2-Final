@@ -1,0 +1,84 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Rainfall Difference from Normal by State",
+    "fontSize": 18,
+    "anchor": "start"
+  },
+  "width": 720,
+  "height": 420,
+  "data": {
+    "url": "data/state_rainfall_summary.csv"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "x": {
+          "datum": 0
+        },
+        "x2": {
+          "field": "difference_from_normal"
+        },
+        "y": {
+          "field": "shapeISO",
+          "type": "nominal",
+          "sort": "-x",
+          "title": "State code"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.difference_from_normal >= 0",
+            "value": "#2b6cb0"
+          },
+          "value": "#c53030"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "size": 130,
+        "tooltip": true
+      },
+      "encoding": {
+        "x": {
+          "field": "difference_from_normal",
+          "type": "quantitative",
+          "title": "Difference from normal rainfall"
+        },
+        "y": {
+          "field": "shapeISO",
+          "type": "nominal",
+          "sort": "-x"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.difference_from_normal >= 0",
+            "value": "#2b6cb0"
+          },
+          "value": "#c53030"
+        },
+        "tooltip": [
+          {
+            "field": "shapeISO",
+            "type": "nominal"
+          },
+          {
+            "field": "difference_from_normal",
+            "type": "quantitative",
+            "format": ".2f"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

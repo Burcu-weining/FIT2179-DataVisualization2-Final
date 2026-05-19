@@ -1,0 +1,60 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Wettest States by Average Rainfall",
+    "fontSize": 18,
+    "anchor": "start"
+  },
+  "width": 720,
+  "height": 420,
+  "data": {
+    "url": "data/state_rainfall_summary.csv"
+  },
+  "mark": {
+    "type": "bar",
+    "tooltip": true
+  },
+  "encoding": {
+    "x": {
+      "field": "avg_rainfall_mm",
+      "type": "quantitative",
+      "title": "Average rainfall"
+    },
+    "y": {
+      "field": "shapeISO",
+      "type": "nominal",
+      "sort": "-x",
+      "title": "State code"
+    },
+    "color": {
+      "field": "avg_rainfall_mm",
+      "type": "quantitative",
+      "scale": {
+        "scheme": "blues"
+      },
+      "legend": null
+    },
+    "tooltip": [
+      {
+        "field": "shapeISO",
+        "type": "nominal",
+        "title": "State code"
+      },
+      {
+        "field": "avg_rainfall_mm",
+        "type": "quantitative",
+        "format": ".2f"
+      },
+      {
+        "field": "difference_from_normal",
+        "type": "quantitative",
+        "format": ".2f"
+      }
+    ]
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

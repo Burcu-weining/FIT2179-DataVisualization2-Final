@@ -1,0 +1,91 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  
+    "title": {
+      "text": "Average Recent Rainfall Across Malaysia",
+      "subtitle": "State-level rainfall based on recent rainfall records",
+      "fontSize": 18,
+      "subtitleFontSize": 12,
+      "anchor": "start"
+    },
+  
+    "width": 700,
+    "height": 430,
+  
+    "data": {
+      "url": "data/malaysia_states.geojson",
+      "format": {
+        "type": "geojson"
+      }
+    },
+  
+    "transform": [
+      {
+        "lookup": "properties.shapeISO",
+        "from": {
+          "data": {
+            "url": "data/state_rainfall_map.csv"
+          },
+          "key": "shapeISO",
+          "fields": [
+            "avg_rainfall_mm",
+            "avg_normal_rainfall_mm",
+            "difference_from_normal"
+          ]
+        }
+      }
+    ],
+  
+    "projection": {
+      "type": "mercator"
+    },
+  
+    "mark": {
+      "type": "geoshape",
+      "stroke": "white",
+      "strokeWidth": 0.8
+    },
+  
+    "encoding": {
+      "color": {
+        "field": "avg_rainfall_mm",
+        "type": "quantitative",
+        "title": "Average rainfall (mm)",
+        "scale": {
+          "scheme": "blues"
+        }
+      },
+  
+      "tooltip": [
+        {
+          "field": "properties.shapeName",
+          "type": "nominal",
+          "title": "State"
+        },
+        {
+          "field": "avg_rainfall_mm",
+          "type": "quantitative",
+          "title": "Average rainfall (mm)",
+          "format": ".2f"
+        },
+        {
+          "field": "avg_normal_rainfall_mm",
+          "type": "quantitative",
+          "title": "Normal rainfall (mm)",
+          "format": ".2f"
+        },
+        {
+          "field": "difference_from_normal",
+          "type": "quantitative",
+          "title": "Difference from normal",
+          "format": ".2f"
+        }
+      ]
+    },
+  
+    "config": {
+      "view": {
+        "stroke": null
+      }
+    }
+  }

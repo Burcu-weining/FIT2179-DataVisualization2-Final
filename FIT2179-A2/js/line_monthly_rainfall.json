@@ -1,14 +1,16 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Average Rainfall by Month",
+    "text": "Average Monthly Rainfall in Malaysia",
+    "subtitle": "Rainfall is generally higher from April onwards, with clear seasonal variation.",
     "fontSize": 18,
+    "subtitleFontSize": 12,
     "anchor": "start"
   },
   "width": 720,
-  "height": 380,
+  "height": 360,
   "data": {
-    "url": "data/monthly_rainfall.csv"
+    "url": "data/rainfall_monthly_clean.csv"
   },
   "mark": {
     "type": "line",
@@ -17,9 +19,10 @@
   },
   "encoding": {
     "x": {
-      "field": "month",
+      "field": "month_name",
       "type": "ordinal",
-      "title": "Month"
+      "title": "Month",
+      "sort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     },
     "y": {
       "field": "avg_rainfall_mm",
@@ -27,20 +30,11 @@
       "title": "Average rainfall"
     },
     "tooltip": [
-      {
-        "field": "month",
-        "type": "ordinal"
-      },
-      {
-        "field": "avg_rainfall_mm",
-        "type": "quantitative",
-        "format": ".2f"
-      }
+      {"field": "month_name", "type": "ordinal", "title": "Month"},
+      {"field": "avg_rainfall_mm", "type": "quantitative", "title": "Average rainfall", "format": ".2f"}
     ]
   },
   "config": {
-    "view": {
-      "stroke": null
-    }
+    "view": {"stroke": null}
   }
 }

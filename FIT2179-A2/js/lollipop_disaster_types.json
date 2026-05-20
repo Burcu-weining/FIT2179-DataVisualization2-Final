@@ -1,0 +1,65 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+      "text": "Disaster Type Comparison",
+      "subtitle": "A lollipop chart makes the dominance of flood disasters easier to see.",
+      "fontSize": 18,
+      "subtitleFontSize": 12,
+      "anchor": "start"
+    },
+    "width": 720,
+    "height": 380,
+    "data": {
+      "url": "data/disaster_type_clean.csv"
+    },
+    "layer": [
+      {
+        "mark": {
+          "type": "rule",
+          "strokeWidth": 2
+        },
+        "encoding": {
+          "x": {"datum": 0},
+          "x2": {"field": "count"},
+          "y": {
+            "field": "disaster_type",
+            "type": "nominal",
+            "sort": "-x",
+            "title": "Disaster type"
+          }
+        }
+      },
+      {
+        "mark": {
+          "type": "circle",
+          "size": 140,
+          "tooltip": true
+        },
+        "encoding": {
+          "x": {
+            "field": "count",
+            "type": "quantitative",
+            "title": "Recorded count"
+          },
+          "y": {
+            "field": "disaster_type",
+            "type": "nominal",
+            "sort": "-x"
+          },
+          "color": {
+            "field": "count",
+            "type": "quantitative",
+            "scale": {"scheme": "orangered"},
+            "legend": null
+          },
+          "tooltip": [
+            {"field": "disaster_type", "type": "nominal", "title": "Disaster type"},
+            {"field": "count", "type": "quantitative", "title": "Count"}
+          ]
+        }
+      }
+    ],
+    "config": {
+      "view": {"stroke": null}
+    }
+  }

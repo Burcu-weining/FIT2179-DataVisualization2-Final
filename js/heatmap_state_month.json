@@ -1,72 +1,46 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  
-    "title": {
-      "text": "Monthly Rainfall Pattern by State",
-      "subtitle": "Darker cells show states and months with higher average rainfall.",
-      "fontSize": 18,
-      "subtitleFontSize": 12,
-      "anchor": "start"
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Rainfall Heatmap by State and Month",
+    "subtitle": "Darker cells show heavier rainfall for each state-month combination.",
+    "fontSize": 18,
+    "subtitleFontSize": 12,
+    "anchor": "start"
+  },
+  "width": 720,
+  "height": 420,
+  "data": {
+    "url": "data/rainfall_state_month_clean.csv"
+  },
+  "mark": {
+    "type": "rect",
+    "tooltip": true
+  },
+  "encoding": {
+    "x": {
+      "field": "month_name",
+      "type": "ordinal",
+      "title": "Month",
+      "sort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     },
-  
-    "width": 720,
-    "height": 420,
-  
-    "data": {
-      "url": "data/state_monthly_rainfall_clean.csv"
+    "y": {
+      "field": "state",
+      "type": "nominal",
+      "title": "State"
     },
-  
-    "mark": {
-      "type": "rect",
-      "tooltip": true
+    "color": {
+      "field": "avg_rainfall_mm",
+      "type": "quantitative",
+      "title": "Average rainfall",
+      "scale": {"scheme": "blues"}
     },
-  
-    "encoding": {
-      "x": {
-        "field": "month_name",
-        "type": "ordinal",
-        "title": "Month",
-        "sort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-      },
-  
-      "y": {
-        "field": "state",
-        "type": "nominal",
-        "title": "State"
-      },
-  
-      "color": {
-        "field": "avg_rainfall_mm",
-        "type": "quantitative",
-        "title": "Avg rainfall",
-        "scale": {
-          "scheme": "blues"
-        }
-      },
-  
-      "tooltip": [
-        {
-          "field": "state",
-          "type": "nominal",
-          "title": "State"
-        },
-        {
-          "field": "month_name",
-          "type": "ordinal",
-          "title": "Month"
-        },
-        {
-          "field": "avg_rainfall_mm",
-          "type": "quantitative",
-          "title": "Average rainfall",
-          "format": ".2f"
-        }
-      ]
-    },
-  
-    "config": {
-      "view": {
-        "stroke": null
-      }
-    }
+    "tooltip": [
+      {"field": "state", "type": "nominal", "title": "State"},
+      {"field": "month_name", "type": "ordinal", "title": "Month"},
+      {"field": "avg_rainfall_mm", "type": "quantitative", "title": "Average rainfall", "format": ".2f"}
+    ]
+  },
+  "config": {
+    "view": {"stroke": null}
   }
+}

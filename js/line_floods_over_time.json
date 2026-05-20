@@ -1,14 +1,16 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Flood Disasters Over Time",
+    "text": "Flood Disasters Over the Years",
+    "subtitle": "Yearly flood records show how flood occurrence changes over time.",
     "fontSize": 18,
+    "subtitleFontSize": 12,
     "anchor": "start"
   },
   "width": 720,
-  "height": 380,
+  "height": 360,
   "data": {
-    "url": "data/flood_yearly.csv"
+    "url": "data/flood_yearly_clean.csv"
   },
   "mark": {
     "type": "line",
@@ -27,14 +29,8 @@
       "title": "Flood count"
     },
     "tooltip": [
-      {
-        "field": "year",
-        "type": "ordinal"
-      },
-      {
-        "field": "flood_count",
-        "type": "quantitative"
-      }
+      {"field": "year", "type": "ordinal", "title": "Year"},
+      {"field": "flood_count", "type": "quantitative", "title": "Flood count"}
     ]
   },
   "config": {

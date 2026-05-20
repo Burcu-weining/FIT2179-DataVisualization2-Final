@@ -1,0 +1,54 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+      "text": "Monthly Min, Average and Max Temperature",
+      "subtitle": "Temperature stays relatively stable but still changes across months.",
+      "fontSize": 18,
+      "subtitleFontSize": 12,
+      "anchor": "start"
+    },
+    "width": 720,
+    "height": 360,
+    "data": {
+      "url": "data/temperature_monthly_clean.csv"
+    },
+    "transform": [
+      {
+        "fold": ["min_temp", "avg_temp", "max_temp"],
+        "as": ["temperature_type", "temperature"]
+      }
+    ],
+    "mark": {
+      "type": "line",
+      "point": true,
+      "tooltip": true
+    },
+    "encoding": {
+      "x": {
+        "field": "month_name",
+        "type": "ordinal",
+        "title": "Month",
+        "sort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+      },
+      "y": {
+        "field": "temperature",
+        "type": "quantitative",
+        "title": "Temperature"
+      },
+      "color": {
+        "field": "temperature_type",
+        "type": "nominal",
+        "title": "Temperature type"
+      },
+      "tooltip": [
+        {"field": "month_name", "type": "ordinal", "title": "Month"},
+        {"field": "temperature_type", "type": "nominal", "title": "Type"},
+        {"field": "temperature", "type": "quantitative", "title": "Temperature", "format": ".2f"}
+      ]
+    },
+    "config": {
+      "view": {
+        "stroke": null
+      }
+    }
+  }

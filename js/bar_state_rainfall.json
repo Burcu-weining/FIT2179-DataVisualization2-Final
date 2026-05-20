@@ -1,0 +1,49 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+      "text": "Which States Receive the Most Rainfall?",
+      "subtitle": "States are ranked by average rainfall.",
+      "fontSize": 18,
+      "subtitleFontSize": 12,
+      "anchor": "start"
+    },
+    "width": 720,
+    "height": 420,
+    "data": {
+      "url": "data/rainfall_state_summary_clean.csv"
+    },
+    "mark": {
+      "type": "bar",
+      "tooltip": true
+    },
+    "encoding": {
+      "x": {
+        "field": "avg_rainfall_mm",
+        "type": "quantitative",
+        "title": "Average rainfall"
+      },
+      "y": {
+        "field": "state",
+        "type": "nominal",
+        "sort": "-x",
+        "title": "State"
+      },
+      "color": {
+        "field": "avg_rainfall_mm",
+        "type": "quantitative",
+        "scale": {
+          "scheme": "blues"
+        },
+        "legend": null
+      },
+      "tooltip": [
+        {"field": "state", "type": "nominal", "title": "State"},
+        {"field": "avg_rainfall_mm", "type": "quantitative", "title": "Average rainfall", "format": ".2f"}
+      ]
+    },
+    "config": {
+      "view": {
+        "stroke": null
+      }
+    }
+  }

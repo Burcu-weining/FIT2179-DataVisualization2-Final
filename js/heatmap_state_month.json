@@ -1,14 +1,14 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Rainfall Heatmap by State and Month",
-    "subtitle": "Darker cells show heavier rainfall for each state-month combination.",
+    "text": "State Monthly Rainfall Pattern",
+    "subtitle": "Darker cells show higher rainfall for each state and month.",
     "fontSize": 18,
     "subtitleFontSize": 12,
     "anchor": "start"
   },
   "width": 720,
-  "height": 420,
+  "height": 430,
   "data": {
     "url": "data/rainfall_state_month_clean.csv"
   },
@@ -32,7 +32,9 @@
       "field": "avg_rainfall_mm",
       "type": "quantitative",
       "title": "Average rainfall",
-      "scale": {"scheme": "blues"}
+      "scale": {
+        "scheme": "blues"
+      }
     },
     "tooltip": [
       {"field": "state", "type": "nominal", "title": "State"},
@@ -41,6 +43,8 @@
     ]
   },
   "config": {
-    "view": {"stroke": null}
+    "view": {
+      "stroke": null
+    }
   }
 }

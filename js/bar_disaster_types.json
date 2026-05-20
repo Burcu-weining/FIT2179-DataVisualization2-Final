@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Natural Disaster Types Recorded in Malaysia",
+    "text": "Types of Natural Disasters in Malaysia",
     "subtitle": "Floods are the most common disaster type in the dataset.",
     "fontSize": 18,
     "subtitleFontSize": 12,
@@ -31,7 +31,9 @@
     "color": {
       "field": "count",
       "type": "quantitative",
-      "scale": {"scheme": "orangered"},
+      "scale": {
+        "scheme": "orangered"
+      },
       "legend": null
     },
     "tooltip": [
@@ -40,6 +42,8 @@
     ]
   },
   "config": {
-    "view": {"stroke": null}
+    "view": {
+      "stroke": null
+    }
   }
 }

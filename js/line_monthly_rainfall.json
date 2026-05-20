@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "Average Monthly Rainfall in Malaysia",
-    "subtitle": "Rainfall is generally higher from April onwards, with clear seasonal variation.",
+    "subtitle": "Rainfall changes across the year, showing seasonal variation.",
     "fontSize": 18,
     "subtitleFontSize": 12,
     "anchor": "start"
@@ -35,6 +35,8 @@
     ]
   },
   "config": {
-    "view": {"stroke": null}
+    "view": {
+      "stroke": null
+    }
   }
 }

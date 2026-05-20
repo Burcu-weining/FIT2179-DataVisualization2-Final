@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>When Rain Becomes Risk</title>
 
-  <!-- Vega-Lite libraries -->
   <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
@@ -72,13 +71,6 @@
       overflow-x: auto;
     }
 
-    .chart-note {
-      color: #555;
-      font-size: 14px;
-      line-height: 1.5;
-      margin-top: 12px;
-    }
-
     .grid-two {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -102,10 +94,6 @@
       h1 {
         font-size: 36px;
       }
-
-      .page {
-        padding: 32px 18px;
-      }
     }
   </style>
 </head>
@@ -116,98 +104,55 @@
     <h1>When Rain Becomes Risk</h1>
 
     <p class="subtitle">
-      This visualisation explores Malaysia’s precipitation and temperature patterns before
-      connecting heavy rainfall to natural disaster risk. The story begins with where and
-      when rainfall is highest, then moves into rainfall abnormality and flood-related disasters.
+      This visualisation explores Malaysia’s rainfall and temperature patterns before connecting
+      precipitation to natural disaster risk. The story moves from climate patterns to floods,
+      showing why rainfall matters for disaster preparedness.
     </p>
 
     <div class="note-box">
-      This project explores a relationship, not direct causation. Flood impacts are affected by
-      rainfall, drainage, land use, urbanisation, river systems, and population exposure.
+      This project explores relationships, not direct causation. Flood impacts are also affected by
+      drainage, land use, urbanisation, river systems, and population exposure.
     </div>
 
-    <!-- SECTION 1 -->
-    <h2>1. Malaysia’s rainfall changes by place and month</h2>
+    <h2>1. Rainfall patterns across months and states</h2>
 
     <p class="section-text">
-      Rainfall is not evenly distributed across Malaysia. Some states receive more rain, and the
-      wettest months also differ across regions. The map below allows the viewer to compare
-      rainfall by month.
+      Malaysia receives rainfall throughout the year, but the intensity differs by month and by state.
+      These charts show when rainfall increases and which states record higher average rainfall.
     </p>
 
     <div class="chart-card">
-      <div id="map_monthly_rainfall"></div>
-      <p class="chart-note">
-        Use the dropdown to view average rainfall for each month. Darker states indicate higher rainfall.
-      </p>
+      <div id="line_monthly_rainfall"></div>
+    </div>
+
+    <div class="chart-card">
+      <div id="bar_wettest_states"></div>
     </div>
 
     <div class="chart-card">
       <div id="heatmap_state_month"></div>
-      <p class="chart-note">
-        The heatmap gives a compact view of rainfall patterns across states and months.
-      </p>
     </div>
 
-    <!-- SECTION 2 -->
-    <h2>2. State-level rainfall differences</h2>
+    <h2>2. Temperature context</h2>
 
     <p class="section-text">
-      The following maps summarise recent rainfall by state. They show average rainfall, normal rainfall,
-      difference from normal rainfall, rainfall ratio, and a simple rainfall category.
+      Temperature provides climate context for the rainfall story. Malaysia’s temperatures are
+      relatively stable, but monthly minimum, average, and maximum values still show seasonal variation.
     </p>
 
     <div class="chart-card">
-      <div id="map_avg_rainfall"></div>
+      <div id="line_temperature_monthly"></div>
     </div>
 
     <div class="chart-card">
-      <div id="map_normal_rainfall"></div>
+      <div id="area_temperature_range"></div>
     </div>
 
-    <div class="chart-card">
-      <div id="map_difference_rainfall"></div>
-    </div>
-
-    <div class="chart-card">
-      <div id="map_rainfall_ratio"></div>
-    </div>
-
-    <div class="chart-card">
-      <div id="map_rainfall_category"></div>
-    </div>
-
-    <!-- SECTION 3 -->
-    <h2>3. Which states are wetter or above normal?</h2>
+    <h2>3. Natural disasters and flood risk</h2>
 
     <p class="section-text">
-      Maps are useful for location, but ranking charts make comparison easier. The bar chart ranks
-      rainfall by state, while the lollipop chart highlights how far each state is above or below normal.
-    </p>
-
-    <div class="grid-two">
-      <div class="chart-card">
-        <div id="bar_wettest_states"></div>
-      </div>
-
-      <div class="chart-card">
-        <div id="lollipop_difference"></div>
-      </div>
-    </div>
-
-    <div class="chart-card">
-      <div id="scatter_actual_normal"></div>
-      <p class="chart-note">
-        Points above the expected relationship suggest states where recent rainfall is higher than normal.
-      </p>
-    </div>
-
-    <!-- SECTION 4 -->
-    <h2>4. Rainfall and natural disaster risk</h2>
-
-    <p class="section-text">
-      Heavy rainfall is important because flooding is one of the most relevant disaster risks in Malaysia.
-      The charts below show the disaster profile and how flood records change over time.
+      Heavy rainfall matters because floods are the most common disaster type in the dataset.
+      The following charts show Malaysia’s disaster profile and how flood records change over time.
     </p>
 
     <div class="grid-two">
@@ -216,34 +161,31 @@
       </div>
 
       <div class="chart-card">
-        <div id="line_floods_over_time"></div>
+        <div id="lollipop_disaster_types"></div>
       </div>
+    </div>
+
+    <div class="chart-card">
+      <div id="line_floods_over_time"></div>
     </div>
 
     <footer>
       Author: Faraz Rasool. Created for FIT2179 Data Visualisation 2, 2026.
       Visualisations created using Vega-Lite. Data sources include rainfall, temperature,
-      natural disaster, and Malaysia state boundary datasets.
+      natural disaster, and Malaysia boundary datasets.
     </footer>
 
   </div>
 
   <script>
     const charts = [
-      ["#map_monthly_rainfall", "js/map_monthly_rainfall.json"],
-      ["#heatmap_state_month", "js/heatmap_state_month.json"],
-
-      ["#map_avg_rainfall", "js/map_avg_rainfall.json"],
-      ["#map_normal_rainfall", "js/map_normal_rainfall.json"],
-      ["#map_difference_rainfall", "js/map_difference_rainfall.json"],
-      ["#map_rainfall_ratio", "js/map_rainfall_ratio.json"],
-      ["#map_rainfall_category", "js/map_rainfall_category.json"],
-
+      ["#line_monthly_rainfall", "js/line_monthly_rainfall.json"],
       ["#bar_wettest_states", "js/bar_wettest_states.json"],
-      ["#lollipop_difference", "js/lollipop_difference.json"],
-      ["#scatter_actual_normal", "js/scatter_actual_normal.json"],
-
+      ["#heatmap_state_month", "js/heatmap_state_month.json"],
+      ["#line_temperature_monthly", "js/line_temperature_monthly.json"],
+      ["#area_temperature_range", "js/area_temperature_range.json"],
       ["#bar_disaster_types", "js/bar_disaster_types.json"],
+      ["#lollipop_disaster_types", "js/lollipop_disaster_types.json"],
       ["#line_floods_over_time", "js/line_floods_over_time.json"]
     ];
 

@@ -1,0 +1,145 @@
+original_state_name,state,month,month_name,avg_rainfall_mm
+Johor,Johor,1,Jan,5.21
+Johor,Johor,2,Feb,4.68
+Johor,Johor,3,Mar,5.49
+Johor,Johor,4,Apr,8.02
+Johor,Johor,5,May,6.01
+Johor,Johor,6,Jun,4.82
+Johor,Johor,7,Jul,5.45
+Johor,Johor,8,Aug,7.01
+Johor,Johor,9,Sep,5.34
+Johor,Johor,10,Oct,5.79
+Johor,Johor,11,Nov,10.33
+Johor,Johor,12,Dec,9.61
+Kedah,Kedah,1,Jan,2.21
+Kedah,Kedah,2,Feb,2.25
+Kedah,Kedah,3,Mar,3.54
+Kedah,Kedah,4,Apr,7.92
+Kedah,Kedah,5,May,7.17
+Kedah,Kedah,6,Jun,5.31
+Kedah,Kedah,7,Jul,5.45
+Kedah,Kedah,8,Aug,6.97
+Kedah,Kedah,9,Sep,9.88
+Kedah,Kedah,10,Oct,11.93
+Kedah,Kedah,11,Nov,8.01
+Kedah,Kedah,12,Dec,4.34
+Kelantan,Kelantan,1,Jan,5.13
+Kelantan,Kelantan,2,Feb,2.68
+Kelantan,Kelantan,3,Mar,2.85
+Kelantan,Kelantan,4,Apr,3.54
+Kelantan,Kelantan,5,May,5.41
+Kelantan,Kelantan,6,Jun,6.1
+Kelantan,Kelantan,7,Jul,6.64
+Kelantan,Kelantan,8,Aug,7.4
+Kelantan,Kelantan,9,Sep,9.47
+Kelantan,Kelantan,10,Oct,8.84
+Kelantan,Kelantan,11,Nov,17.37
+Kelantan,Kelantan,12,Dec,17.15
+Melaka,Melaka,1,Jan,2.33
+Melaka,Melaka,2,Feb,3.65
+Melaka,Melaka,3,Mar,5.01
+Melaka,Melaka,4,Apr,7.62
+Melaka,Melaka,5,May,5.74
+Melaka,Melaka,6,Jun,4.46
+Melaka,Melaka,7,Jul,5.31
+Melaka,Melaka,8,Aug,6.9
+Melaka,Melaka,9,Sep,5.18
+Melaka,Melaka,10,Oct,5.68
+Melaka,Melaka,11,Nov,9.28
+Melaka,Melaka,12,Dec,6.56
+NSembilan,Negeri Sembilan,1,Jan,2.91
+NSembilan,Negeri Sembilan,2,Feb,3.93
+NSembilan,Negeri Sembilan,3,Mar,4.55
+NSembilan,Negeri Sembilan,4,Apr,6.39
+NSembilan,Negeri Sembilan,5,May,4.39
+NSembilan,Negeri Sembilan,6,Jun,3.81
+NSembilan,Negeri Sembilan,7,Jul,3.95
+NSembilan,Negeri Sembilan,8,Aug,5.37
+NSembilan,Negeri Sembilan,9,Sep,4.9
+NSembilan,Negeri Sembilan,10,Oct,5.79
+NSembilan,Negeri Sembilan,11,Nov,8.83
+NSembilan,Negeri Sembilan,12,Dec,7.16
+Pahang,Pahang,1,Jan,5.27
+Pahang,Pahang,2,Feb,3.71
+Pahang,Pahang,3,Mar,3.3
+Pahang,Pahang,4,Apr,5.34
+Pahang,Pahang,5,May,4.83
+Pahang,Pahang,6,Jun,4.67
+Pahang,Pahang,7,Jul,4.59
+Pahang,Pahang,8,Aug,5.79
+Pahang,Pahang,9,Sep,6.05
+Pahang,Pahang,10,Oct,7.17
+Pahang,Pahang,11,Nov,11.03
+Pahang,Pahang,12,Dec,11.82
+Penang,Pulau Pinang,1,Jan,3.78
+Penang,Pulau Pinang,2,Feb,3.21
+Penang,Pulau Pinang,3,Mar,3.98
+Penang,Pulau Pinang,4,Apr,7.58
+Penang,Pulau Pinang,5,May,5.87
+Penang,Pulau Pinang,6,Jun,4.39
+Penang,Pulau Pinang,7,Jul,4.6
+Penang,Pulau Pinang,8,Aug,5.69
+Penang,Pulau Pinang,9,Sep,8.37
+Penang,Pulau Pinang,10,Oct,13.43
+Penang,Pulau Pinang,11,Nov,9.98
+Penang,Pulau Pinang,12,Dec,5.22
+Perak,Perak,1,Jan,4.85
+Perak,Perak,2,Feb,4.22
+Perak,Perak,3,Mar,4.77
+Perak,Perak,4,Apr,8.05
+Perak,Perak,5,May,6.54
+Perak,Perak,6,Jun,5.49
+Perak,Perak,7,Jul,4.15
+Perak,Perak,8,Aug,5.97
+Perak,Perak,9,Sep,7.6
+Perak,Perak,10,Oct,9.8
+Perak,Perak,11,Nov,10.33
+Perak,Perak,12,Dec,9.79
+Perlis,Perlis,1,Jan,1.2
+Perlis,Perlis,2,Feb,1.65
+Perlis,Perlis,3,Mar,2.69
+Perlis,Perlis,4,Apr,6.37
+Perlis,Perlis,5,May,5.12
+Perlis,Perlis,6,Jun,5.6
+Perlis,Perlis,7,Jul,5.97
+Perlis,Perlis,8,Aug,6.37
+Perlis,Perlis,9,Sep,8.88
+Perlis,Perlis,10,Oct,9.04
+Perlis,Perlis,11,Nov,5.89
+Perlis,Perlis,12,Dec,2.43
+Selangor,Selangor,1,Jan,4.27
+Selangor,Selangor,2,Feb,5.29
+Selangor,Selangor,3,Mar,5.34
+Selangor,Selangor,4,Apr,10.21
+Selangor,Selangor,5,May,5.39
+Selangor,Selangor,6,Jun,4.98
+Selangor,Selangor,7,Jul,4.33
+Selangor,Selangor,8,Aug,5.38
+Selangor,Selangor,9,Sep,6.17
+Selangor,Selangor,10,Oct,7.92
+Selangor,Selangor,11,Nov,10.6
+Selangor,Selangor,12,Dec,9.48
+Selangor-Wilayah,Kuala Lumpur,1,Jan,4.27
+Selangor-Wilayah,Kuala Lumpur,2,Feb,5.29
+Selangor-Wilayah,Kuala Lumpur,3,Mar,5.34
+Selangor-Wilayah,Kuala Lumpur,4,Apr,10.22
+Selangor-Wilayah,Kuala Lumpur,5,May,5.39
+Selangor-Wilayah,Kuala Lumpur,6,Jun,4.98
+Selangor-Wilayah,Kuala Lumpur,7,Jul,4.33
+Selangor-Wilayah,Kuala Lumpur,8,Aug,5.38
+Selangor-Wilayah,Kuala Lumpur,9,Sep,6.17
+Selangor-Wilayah,Kuala Lumpur,10,Oct,7.92
+Selangor-Wilayah,Kuala Lumpur,11,Nov,10.6
+Selangor-Wilayah,Kuala Lumpur,12,Dec,9.48
+Terengganu,Terengganu,1,Jan,6.57
+Terengganu,Terengganu,2,Feb,3.49
+Terengganu,Terengganu,3,Mar,3.87
+Terengganu,Terengganu,4,Apr,3.71
+Terengganu,Terengganu,5,May,5.22
+Terengganu,Terengganu,6,Jun,6.48
+Terengganu,Terengganu,7,Jul,5.99
+Terengganu,Terengganu,8,Aug,6.46
+Terengganu,Terengganu,9,Sep,8.89
+Terengganu,Terengganu,10,Oct,9.52
+Terengganu,Terengganu,11,Nov,25.88
+Terengganu,Terengganu,12,Dec,20.37

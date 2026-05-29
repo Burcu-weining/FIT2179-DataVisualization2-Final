@@ -1,10 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>When Rain Becomes Risk</title>
+  <title>Rainfall Patterns and Natural Disasters in Each State in Malaysia</title>
 
-  <!-- Vega-Lite libraries -->
   <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
@@ -12,27 +12,272 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f4f7fb;
+      background:
+        linear-gradient(180deg, #edf4f8 0, #f6f8fb 260px, #eef3f7 100%);
       margin: 0;
       color: #222;
+      scroll-behavior: smooth;
     }
 
     .page {
-      max-width: 1150px;
-      margin: auto;
+      box-sizing: border-box;
+      width: min(1150px, calc(100vw - 296px));
+      margin-left: calc(240px + (100vw - 240px - min(1150px, calc(100vw - 296px))) / 2);
+      margin-right: auto;
       padding: 42px 28px;
     }
 
+    .intro-panel {
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(31,95,153,0.10), rgba(68,170,153,0.10), rgba(230,159,0,0.10)),
+        #ffffff;
+      border: 1px solid rgba(31,95,153,0.14);
+      border-radius: 18px;
+      padding: 28px 30px;
+      margin-bottom: 32px;
+      box-shadow: 0 8px 26px rgba(24, 49, 83, 0.08);
+    }
+
+    .intro-panel > :not(.malaysia-flag) {
+      position: relative;
+      z-index: 1;
+    }
+
+    .meta-line {
+      font-family: "Trebuchet MS", Arial, sans-serif;
+      font-size: 18px;
+      color: #6a3d9a;
+      margin: 4px 0 18px;
+      letter-spacing: 0;
+    }
+
+    .malaysia-flag {
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 0;
+      width: min(480px, 62%);
+      height: 230px;
+      margin: 0;
+      overflow: hidden;
+      pointer-events: none;
+      opacity: 0.72;
+      background:
+        radial-gradient(ellipse at 100% 0%, rgba(48,79,138,0.76) 0 28%, transparent 29%),
+        linear-gradient(125deg, rgba(255,255,255,0.10), rgba(255,255,255,0) 45%),
+        repeating-linear-gradient(
+          168deg,
+          rgba(199,91,91,0.64) 0,
+          rgba(199,91,91,0.64) 10px,
+          rgba(248,245,236,0.74) 10px,
+          rgba(248,245,236,0.74) 20px
+        );
+      mask-image:
+        linear-gradient(225deg, #000 0 54%, transparent 84%),
+        radial-gradient(ellipse at 100% 0%, #000 0 42%, transparent 72%);
+      mask-composite: intersect;
+    }
+
+    .malaysia-flag::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(120deg, rgba(255,255,255,0.18) 0 18%, transparent 18% 36%, rgba(0,0,0,0.05) 36% 54%, transparent 54% 72%, rgba(255,255,255,0.16) 72% 90%, transparent 90%);
+      mix-blend-mode: soft-light;
+    }
+
+    .flag-canton {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 45%;
+      height: 48%;
+      background: rgba(48,79,138,0.76);
+    }
+
+    .flag-moon {
+      position: absolute;
+      right: 82px;
+      top: 32px;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(236,211,108,0.86);
+    }
+
+    .flag-moon::after {
+      content: "";
+      position: absolute;
+      left: 12px;
+      top: 0;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(48,79,138,0.86);
+    }
+
+    .flag-star {
+      position: absolute;
+      right: 36px;
+      top: 38px;
+      width: 30px;
+      height: 30px;
+      background: rgba(236,211,108,0.86);
+      clip-path: polygon(50% 0%, 61% 34%, 98% 35%, 68% 56%, 79% 91%, 50% 70%, 21% 91%, 32% 56%, 2% 35%, 39% 34%);
+    }
+
+    .side-nav {
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 220px;
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background: linear-gradient(180deg, #123b5d 0%, #1f5f99 58%, #44aa99 100%);
+      padding: 34px 16px;
+      box-shadow: 8px 0 24px rgba(24, 49, 83, 0.18);
+      overflow: hidden;
+    }
+
+    .side-nav-title {
+      position: relative;
+      z-index: 1;
+      font-family: "Trebuchet MS", Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.3;
+      font-weight: 800;
+      color: #fff4cf;
+      margin: 0 4px 8px;
+      letter-spacing: 0;
+    }
+
+    .side-nav a {
+      position: relative;
+      z-index: 1;
+      min-height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      text-decoration: none;
+      font-family: "Trebuchet MS", Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.2;
+      font-weight: 700;
+      color: #f8fbff;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.18);
+      letter-spacing: 0;
+    }
+
+    .side-nav a:hover {
+      color: #123b5d;
+      background: #fff4cf;
+      border-color: rgba(255,255,255,0.70);
+    }
+
+    .nav-number {
+      flex: 0 0 26px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: bold;
+      color: #123b5d;
+      background: #ffffff;
+    }
+
+    .nav-label {
+      overflow-wrap: anywhere;
+    }
+
+    .sidebar-flood {
+      position: absolute;
+      left: -18px;
+      right: -18px;
+      bottom: -8px;
+      height: 116px;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(180deg, rgba(136, 204, 238, 0.12) 0%, rgba(86, 180, 233, 0.42) 38%, rgba(0, 114, 178, 0.72) 100%);
+    }
+
+    .sidebar-flood::before,
+    .sidebar-flood::after {
+      content: "";
+      position: absolute;
+      left: -12%;
+      width: 124%;
+      height: 54px;
+      border-radius: 50%;
+      background: rgba(237, 244, 248, 0.34);
+    }
+
+    .sidebar-flood::before {
+      top: -19px;
+      transform: rotate(-3deg);
+    }
+
+    .sidebar-flood::after {
+      top: 9px;
+      background: rgba(255, 255, 255, 0.18);
+      transform: rotate(4deg);
+    }
+
+    .flood-wave {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at 12px 9px, rgba(255,255,255,0.44) 0 7px, transparent 8px) 0 0 / 36px 18px repeat-x;
+    }
+
+    .flood-wave.wave-1 {
+      top: 31px;
+      opacity: 0.55;
+    }
+
+    .flood-wave.wave-2 {
+      top: 62px;
+      opacity: 0.32;
+      transform: translateX(14px);
+    }
+
     h1 {
+      font-family: Georgia, "Times New Roman", serif;
       font-size: 46px;
+      color: #1f5f99;
       margin-bottom: 8px;
       letter-spacing: -1px;
     }
 
     h2 {
       font-size: 26px;
-      margin-top: 46px;
+      margin-top: 44px;
       margin-bottom: 12px;
+      padding-left: 14px;
+      border-left: 6px solid #44aa99;
+    }
+
+    .chapter-title {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 34px;
+      color: #8a4b08;
+      margin: 28px 0 18px;
+      letter-spacing: 0;
+      scroll-margin-top: 28px;
     }
 
     .subtitle {
@@ -51,32 +296,27 @@
       margin-bottom: 20px;
     }
 
-    .note-box {
-      background: #fff6df;
-      border-left: 5px solid #f0b429;
-      padding: 14px 18px;
-      border-radius: 8px;
-      max-width: 900px;
-      color: #5c4300;
-      font-size: 15px;
-      margin-bottom: 30px;
-      line-height: 1.6;
-    }
-
     .chart-card {
       background: white;
       border-radius: 18px;
       padding: 26px;
       margin-bottom: 30px;
-      box-shadow: 0 6px 22px rgba(0,0,0,0.07);
-      overflow-x: auto;
+      box-shadow: 0 8px 28px rgba(24, 49, 83, 0.08);
+      border: 1px solid rgba(31,95,153,0.10);
+      border-top: 6px solid #1f5f99;
+      overflow-x: hidden;
     }
 
-    .chart-note {
-      color: #555;
-      font-size: 14px;
-      line-height: 1.5;
-      margin-top: 12px;
+    .chart-card:nth-of-type(3n + 1) {
+      border-top-color: #44aa99;
+    }
+
+    .chart-card:nth-of-type(3n + 2) {
+      border-top-color: #e69f00;
+    }
+
+    .vega-embed {
+      max-width: 100%;
     }
 
     .grid-two {
@@ -94,7 +334,45 @@
       line-height: 1.6;
     }
 
+    .references {
+      margin-top: 12px;
+    }
+
+    .references strong,
+    .references a {
+      display: block;
+    }
+
+    .references a {
+      color: #1f5f99;
+      overflow-wrap: anywhere;
+    }
+
     @media (max-width: 900px) {
+      .page {
+        width: auto;
+        margin: auto;
+      }
+
+      .side-nav {
+        position: static;
+        top: 0;
+        bottom: auto;
+        width: auto;
+        flex-direction: column;
+        margin: 0;
+        padding: 14px;
+        box-shadow: 0 8px 22px rgba(24, 49, 83, 0.12);
+      }
+
+      .sidebar-flood {
+        display: none;
+      }
+
+      .side-nav a {
+        min-height: 36px;
+      }
+
       .grid-two {
         grid-template-columns: 1fr;
       }
@@ -103,148 +381,139 @@
         font-size: 36px;
       }
 
-      .page {
-        padding: 32px 18px;
+      .intro-panel {
+        padding: 22px;
       }
     }
   </style>
 </head>
 
 <body>
+  <nav class="side-nav" aria-label="Section navigation">
+    <p class="side-nav-title">Click to access directly</p>
+    <a href="#section-1"><span class="nav-number">1</span><span class="nav-label">Temperature in Malaysia</span></a>
+    <a href="#section-2"><span class="nav-number">2</span><span class="nav-label">Rainfall in Malaysia</span></a>
+    <a href="#section-3"><span class="nav-number">3</span><span class="nav-label">Rainfall Data Breakdown</span></a>
+    <a href="#section-4"><span class="nav-number">4</span><span class="nav-label">Normal Rainfall Condition</span></a>
+    <a href="#section-5"><span class="nav-number">5</span><span class="nav-label">Natural Disaster Risks</span></a>
+    <div class="sidebar-flood" aria-hidden="true">
+      <span class="flood-wave wave-1"></span>
+      <span class="flood-wave wave-2"></span>
+    </div>
+  </nav>
+
   <div class="page">
 
-    <h1>When Rain Becomes Risk</h1>
+    <header class="intro-panel">
+      <div class="malaysia-flag" aria-label="Stylised wavy Malaysia flag">
+        <span class="flag-canton"></span>
+        <span class="flag-moon"></span>
+        <span class="flag-star"></span>
+      </div>
 
-    <p class="subtitle">
-      This visualisation explores Malaysia’s precipitation and temperature patterns before
-      connecting heavy rainfall to natural disaster risk. The story begins with where and
-      when rainfall is highest, then moves into rainfall abnormality and flood-related disasters.
-    </p>
+      <h1>Rainfall Patterns and Natural Disasters in Each State in Malaysia</h1>
 
-    <div class="note-box">
-      This project explores a relationship, not direct causation. Flood impacts are affected by
-      rainfall, drainage, land use, urbanisation, river systems, and population exposure.
-    </div>
+      <p class="meta-line">Author: Tu Wei Ning&nbsp;&nbsp;&nbsp;&nbsp; Created for FIT2179</p>
 
-    <!-- SECTION 1 -->
-    <h2>1. Malaysia’s rainfall changes by place and month</h2>
-
-    <p class="section-text">
-      Rainfall is not evenly distributed across Malaysia. Some states receive more rain, and the
-      wettest months also differ across regions. The map below allows the viewer to compare
-      rainfall by month.
-    </p>
-
-    <div class="chart-card">
-      <div id="map_monthly_rainfall"></div>
-      <p class="chart-note">
-        Use the dropdown to view average rainfall for each month. Darker states indicate higher rainfall.
+      <p class="subtitle">
+        This visualization explores the rainfall patterns and temperature in different states in Malaysia,
+        followed by the different types of natural disasters. The story moves from climate patterns to
+        floods, showing why rainfall plays a huge part in natural disasters in Malaysia.
       </p>
-    </div>
+    </header>
 
-    <div class="chart-card">
-      <div id="heatmap_state_month"></div>
-      <p class="chart-note">
-        The heatmap gives a compact view of rainfall patterns across states and months.
-      </p>
-    </div>
+    <h2 id="section-1" class="chapter-title">1. Temperature in Malaysia</h2>
 
-    <!-- SECTION 2 -->
-    <h2>2. State-level rainfall differences</h2>
+    <div class="chart-card"><div id="line_temperature_min_avg_max"></div></div>
+    <div class="chart-card"><div id="area_temperature_range"></div></div>
 
-    <p class="section-text">
-      The following maps summarise recent rainfall by state. They show average rainfall, normal rainfall,
-      difference from normal rainfall, rainfall ratio, and a simple rainfall category.
-    </p>
+    <h2 id="section-2" class="chapter-title">2. Rainfall in Malaysia</h2>
 
-    <div class="chart-card">
-      <div id="map_avg_rainfall"></div>
-    </div>
+    <div class="chart-card"><div id="precipitation_monthly"></div></div>
+    <div class="chart-card"><div id="line_monthly_rainfall"></div></div>
+    <div class="chart-card"><div id="rainfall_temperature_relationship"></div></div>
 
-    <div class="chart-card">
-      <div id="map_normal_rainfall"></div>
-    </div>
-
-    <div class="chart-card">
-      <div id="map_difference_rainfall"></div>
-    </div>
-
-    <div class="chart-card">
-      <div id="map_rainfall_ratio"></div>
-    </div>
-
-    <div class="chart-card">
-      <div id="map_rainfall_category"></div>
-    </div>
-
-    <!-- SECTION 3 -->
-    <h2>3. Which states are wetter or above normal?</h2>
-
-    <p class="section-text">
-      Maps are useful for location, but ranking charts make comparison easier. The bar chart ranks
-      rainfall by state, while the lollipop chart highlights how far each state is above or below normal.
-    </p>
+    <h2 id="section-3" class="chapter-title">3. Rainfall Data Breakdown in Each State</h2>
 
     <div class="grid-two">
-      <div class="chart-card">
-        <div id="bar_wettest_states"></div>
-      </div>
-
-      <div class="chart-card">
-        <div id="lollipop_difference"></div>
-      </div>
+      <div class="chart-card"><div id="rainfall_bar"></div></div>
+      <div class="chart-card"><div id="bar_wettest_states"></div></div>
     </div>
-
-    <div class="chart-card">
-      <div id="scatter_actual_normal"></div>
-      <p class="chart-note">
-        Points above the expected relationship suggest states where recent rainfall is higher than normal.
-      </p>
-    </div>
-
-    <!-- SECTION 4 -->
-    <h2>4. Rainfall and natural disaster risk</h2>
 
     <p class="section-text">
-      Heavy rainfall is important because flooding is one of the most relevant disaster risks in Malaysia.
-      The charts below show the disaster profile and how flood records change over time.
+      We can also break down this information into different months. The heatmaps below show the average rainfall
+      according to the month you select.
     </p>
 
-    <div class="grid-two">
-      <div class="chart-card">
-        <div id="bar_disaster_types"></div>
-      </div>
+    <div class="chart-card"><div id="heatmap_state_month"></div></div>
+    <div class="chart-card"><div id="rainfall_seasonality_scatter"></div></div>
 
-      <div class="chart-card">
-        <div id="line_floods_over_time"></div>
-      </div>
-    </div>
+    <h2 id="section-4" class="chapter-title">4. Rainfall Compared with Normal Condition</h2>
+
+    <p class="section-text">
+      Comparing actual rainfall with normal rainfall helps show which states are above or below the expected conditions.
+      In this context, normal condition means the usual rainfall baseline for each state, based on the historical
+      average in the dataset. Comparing recent rainfall against that baseline adds more context than just showing
+      raw rainfall totals.
+    </p>
+
+    <div class="chart-card"><div id="interactive_rainfall_condition_map"></div></div>
+
+    <h2 id="section-5" class="chapter-title">5. Natural Disasters and Flood Risks</h2>
+
+    <p class="section-text">
+      The charts below compare disaster patterns over time and test whether wetter-than-normal years tend to coincide
+      with more flood disasters.
+    </p>
+
+    <div class="chart-card"><div id="bar_disaster_types"></div></div>
+    <div class="chart-card"><div id="pareto_disaster_types"></div></div>
+    <div class="chart-card"><div id="disaster_timeline_heatmap"></div></div>
+
+    <div class="chart-card"><div id="map_flood_rate_state"></div></div>
+    <div class="chart-card"><div id="map_city_flood_days_symbols"></div></div>
+    <div class="chart-card"><div id="heatmap_city_month_flood_rate"></div></div>
+
+    <div class="chart-card"><div id="line_floods_over_time"></div></div>
+    <div class="chart-card"><div id="flood_rainfall_relationship"></div></div>
 
     <footer>
-      Author: Faraz Rasool. Created for FIT2179 Data Visualisation 2, 2026.
       Visualisations created using Vega-Lite. Data sources include rainfall, temperature,
-      natural disaster, and Malaysia state boundary datasets.
+      natural disaster, and Malaysia boundary datasets.
+      <p>
+        Generative AI is used in assisting manners for integrating graphs and cleaning data.
+        It is also used for giving guidance of creating the best storyline flow.
+      </p>
+      <div class="references">
+        <strong>Reference Datasets:</strong>
+        <a href="https://www.kaggle.com/datasets/wenjiun/malaysia-states-geojson?resource=download" target="_blank" rel="noopener noreferrer">Malaysia States GeoJSON</a>
+        <a href="https://data.humdata.org/dataset/mys-rainfall-subnational" target="_blank" rel="noopener noreferrer">Malaysia Subnational Rainfall</a>
+        <a href="https://climateknowledgeportal.worldbank.org/country/malaysia/climate-data-historical" target="_blank" rel="noopener noreferrer">World Bank Malaysia Historical Climate Data</a>
+      </div>
     </footer>
 
   </div>
 
   <script>
     const charts = [
-      ["#map_monthly_rainfall", "js/map_monthly_rainfall.json"],
-      ["#heatmap_state_month", "js/heatmap_state_month.json"],
-
-      ["#map_avg_rainfall", "js/map_avg_rainfall.json"],
-      ["#map_normal_rainfall", "js/map_normal_rainfall.json"],
-      ["#map_difference_rainfall", "js/map_difference_rainfall.json"],
-      ["#map_rainfall_ratio", "js/map_rainfall_ratio.json"],
-      ["#map_rainfall_category", "js/map_rainfall_category.json"],
-
+      ["#line_temperature_min_avg_max", "js/line_temperature_min_avg_max.json"],
+      ["#area_temperature_range", "js/area_temperature_range.json"],
+      ["#precipitation_monthly", "js/precipitation_monthly.json"],
+      ["#line_monthly_rainfall", "js/line_monthly_rainfall.json"],
       ["#bar_wettest_states", "js/bar_wettest_states.json"],
-      ["#lollipop_difference", "js/lollipop_difference.json"],
-      ["#scatter_actual_normal", "js/scatter_actual_normal.json"],
-
+      ["#rainfall_bar", "js/rainfall_bar.json"],
+      ["#heatmap_state_month", "js/heatmap_state_month.json"],
+      ["#rainfall_seasonality_scatter", "js/rainfall_seasonality_scatter.json"],
+      ["#rainfall_temperature_relationship", "js/rainfall_temperature_relationship.json"],
+      ["#interactive_rainfall_condition_map", "js/interactive_rainfall_condition_map.json"],
+      ["#map_flood_rate_state", "js/map_flood_rate_state.json"],
+      ["#map_city_flood_days_symbols", "js/map_city_flood_days_symbols.json"],
+      ["#heatmap_city_month_flood_rate", "js/heatmap_city_month_flood_rate.json"],
       ["#bar_disaster_types", "js/bar_disaster_types.json"],
-      ["#line_floods_over_time", "js/line_floods_over_time.json"]
+      ["#pareto_disaster_types", "js/pareto_disaster_types.json"],
+      ["#disaster_timeline_heatmap", "js/disaster_timeline_heatmap.json"],
+      ["#line_floods_over_time", "js/line_floods_over_time.json"],
+      ["#flood_rainfall_relationship", "js/flood_rainfall_relationship.json"]
     ];
 
     charts.forEach(([div, file]) => {

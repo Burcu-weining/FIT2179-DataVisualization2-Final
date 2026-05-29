@@ -1,0 +1,265 @@
+year,disaster_type,count
+1983,Storm,0.0
+1986,Storm,0.0
+1987,Storm,0.0
+1988,Storm,0.0
+1991,Storm,0.0
+1993,Storm,0.0
+1995,Storm,0.0
+1996,Storm,1.0
+1997,Storm,1.0
+1998,Storm,0.0
+1999,Storm,0.0
+2000,Storm,1.0
+2001,Storm,0.0
+2002,Storm,1.0
+2003,Storm,0.0
+2004,Storm,2.0
+2005,Storm,0.0
+2006,Storm,0.0
+2007,Storm,0.0
+2008,Storm,0.0
+2009,Storm,0.0
+2011,Storm,0.0
+2013,Storm,0.0
+2014,Storm,0.0
+2015,Storm,0.0
+2016,Storm,0.0
+2017,Storm,1.0
+2018,Storm,0.0
+2019,Storm,0.0
+2020,Storm,0.0
+2021,Storm,0.0
+2022,Storm,0.0
+2023,Storm,0.0
+1983,Flood,1.0
+1986,Flood,1.0
+1987,Flood,1.0
+1988,Flood,1.0
+1991,Flood,0.0
+1993,Flood,1.0
+1995,Flood,0.0
+1996,Flood,1.0
+1997,Flood,0.0
+1998,Flood,1.0
+1999,Flood,1.0
+2000,Flood,1.0
+2001,Flood,4.0
+2002,Flood,0.0
+2003,Flood,3.0
+2004,Flood,3.0
+2005,Flood,2.0
+2006,Flood,4.0
+2007,Flood,2.0
+2008,Flood,2.0
+2009,Flood,2.0
+2011,Flood,1.0
+2013,Flood,1.0
+2014,Flood,1.0
+2015,Flood,1.0
+2016,Flood,4.0
+2017,Flood,3.0
+2018,Flood,2.0
+2019,Flood,4.0
+2020,Flood,5.0
+2021,Flood,8.0
+2022,Flood,5.0
+2023,Flood,4.0
+1983,Drought,0.0
+1986,Drought,0.0
+1987,Drought,0.0
+1988,Drought,0.0
+1991,Drought,0.0
+1993,Drought,0.0
+1995,Drought,0.0
+1996,Drought,0.0
+1997,Drought,0.0
+1998,Drought,1.0
+1999,Drought,0.0
+2000,Drought,0.0
+2001,Drought,0.0
+2002,Drought,0.0
+2003,Drought,0.0
+2004,Drought,0.0
+2005,Drought,0.0
+2006,Drought,0.0
+2007,Drought,0.0
+2008,Drought,0.0
+2009,Drought,0.0
+2011,Drought,0.0
+2013,Drought,0.0
+2014,Drought,1.0
+2015,Drought,0.0
+2016,Drought,0.0
+2017,Drought,0.0
+2018,Drought,0.0
+2019,Drought,0.0
+2020,Drought,0.0
+2021,Drought,0.0
+2022,Drought,0.0
+2023,Drought,0.0
+1983,Mass Movement (Dry),0.0
+1986,Mass Movement (Dry),0.0
+1987,Mass Movement (Dry),0.0
+1988,Mass Movement (Dry),0.0
+1991,Mass Movement (Dry),0.0
+1993,Mass Movement (Dry),1.0
+1995,Mass Movement (Dry),0.0
+1996,Mass Movement (Dry),0.0
+1997,Mass Movement (Dry),0.0
+1998,Mass Movement (Dry),0.0
+1999,Mass Movement (Dry),0.0
+2000,Mass Movement (Dry),0.0
+2001,Mass Movement (Dry),0.0
+2002,Mass Movement (Dry),0.0
+2003,Mass Movement (Dry),0.0
+2004,Mass Movement (Dry),0.0
+2005,Mass Movement (Dry),0.0
+2006,Mass Movement (Dry),0.0
+2007,Mass Movement (Dry),0.0
+2008,Mass Movement (Dry),0.0
+2009,Mass Movement (Dry),0.0
+2011,Mass Movement (Dry),0.0
+2013,Mass Movement (Dry),0.0
+2014,Mass Movement (Dry),0.0
+2015,Mass Movement (Dry),0.0
+2016,Mass Movement (Dry),0.0
+2017,Mass Movement (Dry),0.0
+2018,Mass Movement (Dry),0.0
+2019,Mass Movement (Dry),0.0
+2020,Mass Movement (Dry),0.0
+2021,Mass Movement (Dry),0.0
+2022,Mass Movement (Dry),0.0
+2023,Mass Movement (Dry),0.0
+1983,Mass Movement (Wet),0.0
+1986,Mass Movement (Wet),0.0
+1987,Mass Movement (Wet),0.0
+1988,Mass Movement (Wet),0.0
+1991,Mass Movement (Wet),0.0
+1993,Mass Movement (Wet),0.0
+1995,Mass Movement (Wet),1.0
+1996,Mass Movement (Wet),1.0
+1997,Mass Movement (Wet),0.0
+1998,Mass Movement (Wet),0.0
+1999,Mass Movement (Wet),0.0
+2000,Mass Movement (Wet),0.0
+2001,Mass Movement (Wet),0.0
+2002,Mass Movement (Wet),1.0
+2003,Mass Movement (Wet),0.0
+2004,Mass Movement (Wet),0.0
+2005,Mass Movement (Wet),0.0
+2006,Mass Movement (Wet),0.0
+2007,Mass Movement (Wet),0.0
+2008,Mass Movement (Wet),0.0
+2009,Mass Movement (Wet),0.0
+2011,Mass Movement (Wet),1.0
+2013,Mass Movement (Wet),0.0
+2014,Mass Movement (Wet),0.0
+2015,Mass Movement (Wet),0.0
+2016,Mass Movement (Wet),0.0
+2017,Mass Movement (Wet),0.0
+2018,Mass Movement (Wet),0.0
+2019,Mass Movement (Wet),0.0
+2020,Mass Movement (Wet),0.0
+2021,Mass Movement (Wet),0.0
+2022,Mass Movement (Wet),1.0
+2023,Mass Movement (Wet),0.0
+1983,Earthquake,0.0
+1986,Earthquake,0.0
+1987,Earthquake,0.0
+1988,Earthquake,0.0
+1991,Earthquake,0.0
+1993,Earthquake,0.0
+1995,Earthquake,0.0
+1996,Earthquake,0.0
+1997,Earthquake,0.0
+1998,Earthquake,0.0
+1999,Earthquake,0.0
+2000,Earthquake,0.0
+2001,Earthquake,0.0
+2002,Earthquake,0.0
+2003,Earthquake,0.0
+2004,Earthquake,1.0
+2005,Earthquake,0.0
+2006,Earthquake,0.0
+2007,Earthquake,0.0
+2008,Earthquake,0.0
+2009,Earthquake,0.0
+2011,Earthquake,0.0
+2013,Earthquake,0.0
+2014,Earthquake,0.0
+2015,Earthquake,1.0
+2016,Earthquake,0.0
+2017,Earthquake,0.0
+2018,Earthquake,0.0
+2019,Earthquake,0.0
+2020,Earthquake,0.0
+2021,Earthquake,0.0
+2022,Earthquake,0.0
+2023,Earthquake,0.0
+1983,Epidemic,0.0
+1986,Epidemic,0.0
+1987,Epidemic,0.0
+1988,Epidemic,0.0
+1991,Epidemic,1.0
+1993,Epidemic,0.0
+1995,Epidemic,0.0
+1996,Epidemic,2.0
+1997,Epidemic,3.0
+1998,Epidemic,1.0
+1999,Epidemic,0.0
+2000,Epidemic,2.0
+2001,Epidemic,0.0
+2002,Epidemic,0.0
+2003,Epidemic,0.0
+2004,Epidemic,0.0
+2005,Epidemic,0.0
+2006,Epidemic,0.0
+2007,Epidemic,1.0
+2008,Epidemic,0.0
+2009,Epidemic,0.0
+2011,Epidemic,0.0
+2013,Epidemic,0.0
+2014,Epidemic,0.0
+2015,Epidemic,0.0
+2016,Epidemic,0.0
+2017,Epidemic,0.0
+2018,Epidemic,0.0
+2019,Epidemic,0.0
+2020,Epidemic,0.0
+2021,Epidemic,0.0
+2022,Epidemic,0.0
+2023,Epidemic,1.0
+1983,Wildfire,0.0
+1986,Wildfire,0.0
+1987,Wildfire,0.0
+1988,Wildfire,0.0
+1991,Wildfire,0.0
+1993,Wildfire,0.0
+1995,Wildfire,1.0
+1996,Wildfire,0.0
+1997,Wildfire,1.0
+1998,Wildfire,1.0
+1999,Wildfire,0.0
+2000,Wildfire,0.0
+2001,Wildfire,0.0
+2002,Wildfire,0.0
+2003,Wildfire,0.0
+2004,Wildfire,0.0
+2005,Wildfire,1.0
+2006,Wildfire,0.0
+2007,Wildfire,0.0
+2008,Wildfire,0.0
+2009,Wildfire,0.0
+2011,Wildfire,0.0
+2013,Wildfire,0.0
+2014,Wildfire,0.0
+2015,Wildfire,0.0
+2016,Wildfire,0.0
+2017,Wildfire,0.0
+2018,Wildfire,0.0
+2019,Wildfire,0.0
+2020,Wildfire,0.0
+2021,Wildfire,0.0
+2022,Wildfire,0.0
+2023,Wildfire,0.0

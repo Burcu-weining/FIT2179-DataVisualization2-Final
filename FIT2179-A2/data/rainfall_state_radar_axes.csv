@@ -1,0 +1,5 @@
+metric,metric_order,x,y
+Average monthly rainfall,0,0.0,-1.08
+Wettest month rainfall,1,1.08,0.0
+Seasonality strength,2,0.0,1.08
+Wet/dry contrast,3,-1.08,0.0

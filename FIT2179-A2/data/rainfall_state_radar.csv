@@ -1,0 +1,26 @@
+state,metric,metric_order,point_order,raw_value,normalised_value,x,y
+Terengganu,Average monthly rainfall,0,0,8.87,1.0,0.0,-1.0
+Kelantan,Average monthly rainfall,0,0,7.72,0.7712,0.0,-0.7712
+Perlis,Average monthly rainfall,0,0,5.1,0.25,0.0,-0.25
+Kedah,Average monthly rainfall,0,0,6.25,0.4788,0.0,-0.4788
+Pulau Pinang,Average monthly rainfall,0,0,6.34,0.4967,0.0,-0.4967
+Terengganu,Wettest month rainfall,1,1,25.88,1.0,1.0,0.0
+Kelantan,Wettest month rainfall,1,1,17.37,0.621,0.621,0.0
+Perlis,Wettest month rainfall,1,1,9.04,0.25,0.25,0.0
+Kedah,Wettest month rainfall,1,1,11.93,0.3787,0.3787,0.0
+Pulau Pinang,Wettest month rainfall,1,1,13.43,0.4455,0.4455,0.0
+Terengganu,Seasonality strength,2,2,0.757,1.0,0.0,1.0
+Kelantan,Seasonality strength,2,2,0.614,0.6449,0.0,0.6449
+Perlis,Seasonality strength,2,2,0.489,0.3344,0.0,0.3344
+Kedah,Seasonality strength,2,2,0.456,0.2525,0.0,0.2525
+Pulau Pinang,Seasonality strength,2,2,0.455,0.25,0.0,0.25
+Terengganu,Wet/dry contrast,3,3,7.42,0.9754,-0.9754,0.0
+Kelantan,Wet/dry contrast,3,3,6.48,0.7649,-0.7649,0.0
+Perlis,Wet/dry contrast,3,3,7.53,1.0,-1.0,0.0
+Kedah,Wet/dry contrast,3,3,5.4,0.5231,-0.5231,0.0
+Pulau Pinang,Wet/dry contrast,3,3,4.18,0.25,-0.25,0.0
+Terengganu,Average monthly rainfall,0,4,8.87,1.0,0.0,-1.0
+Kelantan,Average monthly rainfall,0,4,7.72,0.7712,0.0,-0.7712
+Perlis,Average monthly rainfall,0,4,5.1,0.25,0.0,-0.25
+Kedah,Average monthly rainfall,0,4,6.25,0.4788,0.0,-0.4788
+Pulau Pinang,Average monthly rainfall,0,4,6.34,0.4967,0.0,-0.4967

@@ -1,0 +1,9 @@
+city,state_name,longitude,latitude,total_days,flood_days,flash_flood_days,avg_rainfall_7day_mm,avg_humidity_pct,flood_day_rate_pct,flash_flood_share_pct
+Johor Bahru,Johor,103.7414,1.4927,5921,169,88,9.99,84.45,2.85,52.07
+Kota Bharu,Kelantan,102.2386,6.1254,5920,121,46,7.66,81.39,2.04,38.02
+Kota Kinabalu,Sabah,116.0735,5.9804,5921,73,14,7.4,85.39,1.23,19.18
+Kuala Lumpur,Kuala Lumpur,101.6869,3.139,5921,55,4,7.18,86.74,0.93,7.27
+Kuantan,Pahang,103.3256,3.8077,5921,121,44,8.0,86.28,2.04,36.36
+Kuching,Sarawak,110.3592,1.5533,5921,90,25,10.51,86.07,1.52,27.78
+Melaka,Melaka,102.2501,2.1896,5921,22,3,6.86,86.0,0.37,13.64
+Shah Alam,Selangor,101.5183,3.0738,5921,25,2,7.41,80.08,0.42,8.0

@@ -1,8 +1,10 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Average Rainfall in Each State in Malaysia",
-    "subtitle": "Average rainfall in each state in Malaysia.",
+    "text": "Interactive Rainfall Condition Map Across Malaysia",
+    "subtitle": [
+      "Use the dropdown to switch between normal rainfall, rainfall above normal, and actual / normal rainfall ratio."
+    ],
     "font": "Georgia, Times New Roman, serif",
     "fontSize": 18,
     "color": "#1f5f99",
@@ -11,21 +13,46 @@
     "subtitleColor": "#222222",
     "anchor": "start"
   },
-  "width": 440,
-  "height": 360,
-  "projection": {
-    "type": "mercator"
-  },
+  "width": 820,
+  "height": 520,
+  "params": [
+    {
+      "name": "SelectedRainfallMetric",
+      "value": "difference_from_normal",
+      "bind": {
+        "input": "select",
+        "name": "Show: ",
+        "options": [
+          "avg_normal_rainfall_mm",
+          "difference_from_normal",
+          "rainfall_ratio"
+        ],
+        "labels": [
+          "Normal rainfall",
+          "Rainfall above normal",
+          "Actual / normal rainfall ratio"
+        ]
+      }
+    }
+  ],
   "data": {
-    "url": "data/state_rainfall_map.csv"
+    "url": "data/state_rainfall_summary.csv"
   },
   "transform": [
     {
       "calculate": "datum.shapeISO == 'MY-01' ? 'Johor' : datum.shapeISO == 'MY-02' ? 'Kedah' : datum.shapeISO == 'MY-03' ? 'Kelantan' : datum.shapeISO == 'MY-04' ? 'Melaka' : datum.shapeISO == 'MY-05' ? 'Negeri Sembilan' : datum.shapeISO == 'MY-06' ? 'Pahang' : datum.shapeISO == 'MY-07' ? 'Pulau Pinang' : datum.shapeISO == 'MY-08' ? 'Perak' : datum.shapeISO == 'MY-09' ? 'Perlis' : datum.shapeISO == 'MY-10' ? 'Selangor' : datum.shapeISO == 'MY-11' ? 'Terengganu' : datum.shapeISO == 'MY-12' ? 'Sabah' : datum.shapeISO == 'MY-13' ? 'Sarawak' : datum.shapeISO == 'MY-14' ? 'Kuala Lumpur' : datum.shapeISO == 'MY-15' ? 'Labuan' : datum.shapeISO == 'MY-16' ? 'Putrajaya' : datum.shapeISO == 'MY-17' ? 'Putrajaya' : datum.shapeISO",
-      "as": "state"
+      "as": "state_name"
     },
     {
-      "lookup": "state",
+      "calculate": "SelectedRainfallMetric == 'avg_normal_rainfall_mm' ? datum.avg_normal_rainfall_mm : SelectedRainfallMetric == 'difference_from_normal' ? datum.difference_from_normal : datum.rainfall_ratio",
+      "as": "selected_value"
+    },
+    {
+      "calculate": "SelectedRainfallMetric == 'avg_normal_rainfall_mm' ? 'Normal rainfall' : SelectedRainfallMetric == 'difference_from_normal' ? 'Rainfall above normal' : 'Actual / normal rainfall ratio'",
+      "as": "selected_metric_label"
+    },
+    {
+      "lookup": "state_name",
       "from": {
         "data": {
           "url": "data/malaysia_states_simple.geojson",
@@ -39,10 +66,13 @@
       "as": "geo"
     }
   ],
+  "projection": {
+    "type": "mercator"
+  },
   "mark": {
     "type": "geoshape",
     "stroke": "white",
-    "strokeWidth": 0.8
+    "strokeWidth": 0.7
   },
   "encoding": {
     "shape": {
@@ -50,46 +80,53 @@
       "type": "geojson"
     },
     "color": {
-      "field": "avg_rainfall_mm",
+      "field": "selected_value",
       "type": "quantitative",
-      "title": "Average rainfall (mm)",
-      "scale": {
-        "scheme": "cividis",
-        "domainMin": 0
-      },
-      "legend": {
-        "orient": "bottom",
-        "titleLimit": 220,
-        "labelLimit": 80
-      }
+      "title": "Selected value",
+    "scale": {
+      "scheme": "cividis",
+      "domainMin": 0
+    }
     },
     "tooltip": [
       {
-        "field": "state",
+        "field": "state_name",
         "type": "nominal",
         "title": "State"
       },
       {
-        "field": "shapeISO",
+        "field": "selected_metric_label",
         "type": "nominal",
-        "title": "State code"
+        "title": "Selected metric"
+      },
+      {
+        "field": "selected_value",
+        "type": "quantitative",
+        "title": "Selected value",
+        "format": ".2f"
       },
       {
         "field": "avg_rainfall_mm",
         "type": "quantitative",
-        "title": "Average rainfall (mm)",
+        "title": "Recent rainfall",
         "format": ".2f"
       },
       {
         "field": "avg_normal_rainfall_mm",
         "type": "quantitative",
-        "title": "Normal rainfall (mm)",
+        "title": "Normal rainfall",
         "format": ".2f"
       },
       {
         "field": "difference_from_normal",
         "type": "quantitative",
-        "title": "Difference from normal",
+        "title": "Rainfall above normal",
+        "format": ".2f"
+      },
+      {
+        "field": "rainfall_ratio",
+        "type": "quantitative",
+        "title": "Actual / normal ratio",
         "format": ".2f"
       }
     ]

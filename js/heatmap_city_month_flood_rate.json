@@ -1,0 +1,103 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Monthly Flood Pattern by City",
+    "subtitle": [
+      "This heatmap shows when each city records more flood days in the new city-day dataset.",
+      "Darker cells mean a higher percentage of days in that month were marked as flood days."
+    ],
+    "font": "Georgia, Times New Roman, serif",
+    "fontSize": 18,
+    "color": "#1f5f99",
+    "subtitleFont": "Arial, sans-serif",
+    "subtitleFontSize": 12,
+    "subtitleColor": "#222222",
+    "anchor": "start"
+  },
+  "width": 820,
+  "height": 300,
+  "data": {
+    "url": "data/malaysia_city_month_flood_summary.csv"
+  },
+  "mark": {
+    "type": "rect",
+    "tooltip": true
+  },
+  "encoding": {
+    "x": {
+      "field": "month_name",
+      "type": "ordinal",
+      "title": "Month",
+      "sort": [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec"
+      ],
+      "axis": {
+        "labelAngle": 0
+      }
+    },
+    "y": {
+      "field": "city",
+      "type": "nominal",
+      "title": "City"
+    },
+    "color": {
+      "field": "flood_rate_pct",
+      "type": "quantitative",
+      "title": "Flood days (%)",
+      "scale": {
+        "scheme": "viridis"
+      }
+    },
+    "tooltip": [
+      {
+        "field": "city",
+        "type": "nominal",
+        "title": "City"
+      },
+      {
+        "field": "month_name",
+        "type": "ordinal",
+        "title": "Month"
+      },
+      {
+        "field": "flood_rate_pct",
+        "type": "quantitative",
+        "title": "Flood days (%)",
+        "format": ".2f"
+      },
+      {
+        "field": "flood_days",
+        "type": "quantitative",
+        "title": "Flood days"
+      },
+      {
+        "field": "avg_rainfall_7day_mm",
+        "type": "quantitative",
+        "title": "Average 7-day rainfall (mm)",
+        "format": ".2f"
+      },
+      {
+        "field": "avg_humidity_pct",
+        "type": "quantitative",
+        "title": "Average humidity (%)",
+        "format": ".2f"
+      }
+    ]
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

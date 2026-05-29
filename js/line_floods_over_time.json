@@ -1,27 +1,40 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Flood Disasters Over the Years",
-    "subtitle": "Yearly flood records show how flood occurrence changes over time.",
+    "text": "Flood Disasters Over Time",
+    "subtitle": "From 2013 to 2023, flood records rise after 2018 and peak in 2021 before easing in 2022 and 2023.",
+    "font": "Georgia, Times New Roman, serif",
     "fontSize": 18,
+    "color": "#1f5f99",
+    "subtitleFont": "Arial, sans-serif",
     "subtitleFontSize": 12,
+    "subtitleColor": "#222222",
     "anchor": "start"
   },
-  "width": 720,
+  "width": 820,
   "height": 360,
   "data": {
-    "url": "data/flood_yearly_clean.csv"
+    "url": "data/flood_yearly.csv"
   },
+  "transform": [
+    {
+      "filter": "toNumber(datum.year) > 2011"
+    }
+  ],
   "mark": {
     "type": "line",
     "point": true,
-    "tooltip": true
+    "tooltip": true,
+    "color": "#0072B2"
   },
   "encoding": {
     "x": {
       "field": "year",
       "type": "ordinal",
-      "title": "Year"
+      "title": "Year",
+      "axis": {
+        "labelAngle": 0
+      }
     },
     "y": {
       "field": "flood_count",
@@ -29,8 +42,14 @@
       "title": "Flood count"
     },
     "tooltip": [
-      {"field": "year", "type": "ordinal", "title": "Year"},
-      {"field": "flood_count", "type": "quantitative", "title": "Flood count"}
+      {
+        "field": "year",
+        "type": "ordinal"
+      },
+      {
+        "field": "flood_count",
+        "type": "quantitative"
+      }
     ]
   },
   "config": {

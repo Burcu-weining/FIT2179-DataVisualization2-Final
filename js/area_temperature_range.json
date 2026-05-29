@@ -3,8 +3,12 @@
     "title": {
       "text": "Monthly Temperature Range",
       "subtitle": "The shaded area shows the gap between minimum and maximum temperature.",
+      "font": "Georgia, Times New Roman, serif",
       "fontSize": 18,
+      "color": "#1f5f99",
+      "subtitleFont": "Arial, sans-serif",
       "subtitleFontSize": 12,
+      "subtitleColor": "#222222",
       "anchor": "start"
     },
     "width": 720,
@@ -47,11 +51,11 @@
             "type": "ordinal",
             "sort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
           },
-          "y": {
-            "field": "avg_temp",
-            "type": "quantitative",
-            "title": "Average temperature"
-          },
+      "y": {
+        "field": "avg_temp",
+        "type": "quantitative",
+        "title": "Temperature"
+      },
           "tooltip": [
             {"field": "month_name", "type": "ordinal", "title": "Month"},
             {"field": "min_temp", "type": "quantitative", "title": "Min temperature", "format": ".2f"},

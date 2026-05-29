@@ -1,0 +1,276 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "City Flood Days on State Flood-Risk Background",
+    "subtitle": [
+      "This map brings the state-level flood background together with the cities measured in the daily flood dataset.",
+      "Larger circles mark cities with more flood days, while the shaded states show where flood records are more common."
+    ],
+    "font": "Georgia, Times New Roman, serif",
+    "fontSize": 18,
+    "color": "#1f5f99",
+    "subtitleFont": "Arial, sans-serif",
+    "subtitleFontSize": 12,
+    "subtitleColor": "#222222",
+    "anchor": "start"
+  },
+  "width": 820,
+  "height": 430,
+  "projection": {
+    "type": "mercator"
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/malaysia_states_simple.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#edf2f4",
+        "stroke": "#ffffff",
+        "strokeWidth": 0.8
+      }
+    },
+    {
+      "data": {
+        "url": "data/malaysia_flood_state_summary.csv"
+      },
+      "transform": [
+        {
+          "lookup": "state_name",
+          "from": {
+            "data": {
+              "url": "data/malaysia_states_simple.geojson",
+              "format": {
+                "type": "json",
+                "property": "features"
+              }
+            },
+            "key": "properties.name"
+          },
+          "as": "geo"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "white",
+        "strokeWidth": 0.8,
+        "opacity": 0.55,
+        "tooltip": true
+      },
+      "encoding": {
+        "shape": {
+          "field": "geo",
+          "type": "geojson"
+        },
+        "color": {
+          "field": "flood_rate_pct",
+          "type": "quantitative",
+          "title": "State flood occurrence (%)",
+          "scale": {
+            "scheme": "cividis",
+            "domainMin": 0
+          },
+          "legend": {
+            "orient": "right",
+            "titleLimit": 220
+          }
+        },
+        "tooltip": [
+          {
+            "field": "state_name",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "flood_rate_pct",
+            "type": "quantitative",
+            "title": "State flood occurrence (%)",
+            "format": ".2f"
+          },
+          {
+            "field": "flood_records",
+            "type": "quantitative",
+            "title": "Flood records"
+          },
+          {
+            "field": "district_year_records",
+            "type": "quantitative",
+            "title": "District-year records"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/malaysia_city_flood_summary.csv"
+      },
+      "transform": [
+        {
+          "calculate": "toNumber(datum.longitude)",
+          "as": "display_longitude"
+        },
+        {
+          "calculate": "toNumber(datum.latitude)",
+          "as": "display_latitude"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "stroke": "#111111",
+        "strokeWidth": 1.1,
+        "opacity": 0.95,
+        "tooltip": true
+      },
+      "encoding": {
+        "longitude": {
+          "field": "display_longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "display_latitude",
+          "type": "quantitative"
+        },
+        "size": {
+          "field": "flood_days",
+          "type": "quantitative",
+          "title": "City flood days",
+          "scale": {
+            "range": [
+              180,
+              3600
+            ]
+          },
+          "legend": {
+            "orient": "right",
+            "titleLimit": 180
+          }
+        },
+        "color": {
+          "field": "city",
+          "type": "nominal",
+          "title": "Measured city",
+          "scale": {
+            "domain": [
+              "Johor Bahru",
+              "Kota Bharu",
+              "Kota Kinabalu",
+              "Kuala Lumpur",
+              "Kuantan",
+              "Kuching",
+              "Melaka",
+              "Shah Alam"
+            ],
+            "range": [
+              "#D55E00",
+              "#0072B2",
+              "#009E73",
+              "#CC79A7",
+              "#E69F00",
+              "#56B4E9",
+              "#000000",
+              "#F0E442"
+            ]
+          },
+          "legend": {
+            "orient": "right",
+            "titleLimit": 180,
+            "labelLimit": 180
+          }
+        },
+        "tooltip": [
+          {
+            "field": "city",
+            "type": "nominal",
+            "title": "City"
+          },
+          {
+            "field": "state_name",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "flood_days",
+            "type": "quantitative",
+            "title": "Flood days"
+          },
+          {
+            "field": "flash_flood_days",
+            "type": "quantitative",
+            "title": "Flash flood days"
+          },
+          {
+            "field": "flash_flood_share_pct",
+            "type": "quantitative",
+            "title": "Flash flood share (%)",
+            "format": ".2f"
+          },
+          {
+            "field": "avg_rainfall_7day_mm",
+            "type": "quantitative",
+            "title": "Average 7-day rainfall (mm)",
+            "format": ".2f"
+          },
+          {
+            "field": "avg_humidity_pct",
+            "type": "quantitative",
+            "title": "Average humidity (%)",
+            "format": ".2f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/malaysia_city_flood_summary.csv"
+      },
+      "transform": [
+        {
+          "calculate": "toNumber(datum.longitude)",
+          "as": "display_longitude"
+        },
+        {
+          "calculate": "toNumber(datum.latitude)",
+          "as": "display_latitude"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "font": "Arial",
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "dx": 8,
+        "dy": -8,
+        "color": "#222222"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "display_longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "display_latitude",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "city",
+          "type": "nominal"
+        }
+      }
+    }
+  ],
+  "resolve": {
+    "scale": {
+      "color": "independent"
+    }
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

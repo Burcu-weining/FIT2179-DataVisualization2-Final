@@ -1,0 +1,72 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Monthly Precipitation",
+    "subtitle": [
+      "Monthly precipitation shows when rainfall is higher or lower across the year."
+    ],
+    "font": "Georgia, Times New Roman, serif",
+    "fontSize": 18,
+    "color": "#1f5f99",
+    "subtitleFont": "Arial, sans-serif",
+    "subtitleFontSize": 14,
+    "subtitleColor": "#222222",
+    "anchor": "start"
+  },
+  "width": 720,
+  "height": 380,
+  "data": {
+    "url": "data/precipitation min ave max temp.csv"
+  },
+  "mark": {
+    "type": "bar",
+    "color": "#8ecae6",
+    "tooltip": true
+  },
+  "encoding": {
+    "x": {
+      "field": "Category",
+      "type": "ordinal",
+      "title": "Month",
+      "sort": [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec"
+      ],
+      "axis": {
+        "labelAngle": 0
+      }
+    },
+    "y": {
+      "field": "Precipitation (mm)",
+      "type": "quantitative",
+      "title": "Precipitation (mm)"
+    },
+    "tooltip": [
+      {
+        "field": "Category",
+        "type": "ordinal",
+        "title": "Month"
+      },
+      {
+        "field": "Precipitation (mm)",
+        "type": "quantitative",
+        "format": ".2f"
+      }
+    ]
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

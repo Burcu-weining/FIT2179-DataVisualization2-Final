@@ -1,45 +1,122 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Wettest States by Average Rainfall",
-    "subtitle": "Terengganu and Kelantan record the highest average rainfall in this dataset.",
+    "text": "Most Humid State due to Rainfall in West Malaysia",
+    "subtitle": [
+      "These are the states with the most rainfall hence the most humid.",
+      "This map focuses on West Malaysia because the map on the left shows it has",
+      "higher average rainfall than East Malaysia."
+    ],
+    "font": "Georgia, Times New Roman, serif",
     "fontSize": 18,
+    "color": "#1f5f99",
+    "subtitleFont": "Arial, sans-serif",
     "subtitleFontSize": 12,
+    "subtitleColor": "#222222",
     "anchor": "start"
   },
-  "width": 720,
-  "height": 420,
-  "data": {
-    "url": "data/rainfall_state_summary_clean.csv"
+  "width": 300,
+  "height": 360,
+  "projection": {
+    "type": "mercator"
   },
-  "mark": {
-    "type": "bar",
-    "tooltip": true
-  },
-  "encoding": {
-    "x": {
-      "field": "avg_rainfall_mm",
-      "type": "quantitative",
-      "title": "Average rainfall"
+  "layer": [
+    {
+      "data": {
+        "url": "data/malaysia_states_simple.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "transform": [
+        {
+          "filter": "indexof(['Sabah', 'Sarawak', 'Labuan'], datum.properties.name) < 0"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "fill": "#e6e6e6",
+        "stroke": "white",
+        "strokeWidth": 0.8
+      },
+      "encoding": {
+        "tooltip": [
+          {
+            "field": "properties.name",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "value": "No rainfall value in this dataset",
+            "title": "Average rainfall"
+          }
+        ]
+      }
     },
-    "y": {
-      "field": "state",
-      "type": "nominal",
-      "sort": "-x",
-      "title": "State"
-    },
-    "color": {
-      "field": "avg_rainfall_mm",
-      "type": "quantitative",
-      "scale": {"scheme": "blues"},
-      "legend": null
-    },
-    "tooltip": [
-      {"field": "state", "type": "nominal", "title": "State"},
-      {"field": "avg_rainfall_mm", "type": "quantitative", "title": "Average rainfall", "format": ".2f"}
-    ]
-  },
+    {
+      "data": {
+        "url": "data/rainfall_state_summary_clean.csv"
+      },
+      "transform": [
+        {
+          "lookup": "state",
+          "from": {
+            "data": {
+              "url": "data/malaysia_states_simple.geojson",
+              "format": {
+                "type": "json",
+                "property": "features"
+              }
+            },
+            "key": "properties.name"
+          },
+          "as": "geo"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "white",
+        "strokeWidth": 0.8
+      },
+      "encoding": {
+        "shape": {
+          "field": "geo",
+          "type": "geojson"
+        },
+        "color": {
+          "field": "avg_rainfall_mm",
+          "type": "quantitative",
+          "title": "Average rainfall",
+          "scale": {
+            "scheme": "viridis",
+            "domainMin": 0
+          },
+          "legend": {
+            "orient": "bottom",
+            "titleLimit": 220,
+            "labelLimit": 80
+          }
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "avg_rainfall_mm",
+            "type": "quantitative",
+            "title": "Average rainfall",
+            "format": ".2f"
+          }
+        ]
+      }
+    }
+  ],
   "config": {
-    "view": {"stroke": null}
+    "view": {
+      "stroke": null
+    }
   }
 }

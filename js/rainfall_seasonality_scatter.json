@@ -1,0 +1,123 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Rainfall Seasonality by State in West Malaysia",
+    "subtitle": [
+      "Rainfall does not arrive in the same rhythm across West Malaysia.",
+      "Darker states have rain concentrated into fewer wet months, while lighter states receive it more evenly through the year.",
+      "Hover over a state to compare its wettest month, driest month, and main wet period."
+    ],
+    "font": "Georgia, Times New Roman, serif",
+    "fontSize": 18,
+    "color": "#1f5f99",
+    "subtitleFont": "Arial, sans-serif",
+    "subtitleFontSize": 12,
+    "subtitleColor": "#222222",
+    "anchor": "start"
+  },
+  "width": 820,
+  "height": 520,
+  "projection": {
+    "type": "mercator"
+  },
+  "data": {
+    "url": "data/rainfall_seasonality_by_state.csv"
+  },
+  "transform": [
+    {
+      "lookup": "state",
+      "from": {
+        "data": {
+          "url": "data/malaysia_states_simple.geojson",
+          "format": {
+            "type": "json",
+            "property": "features"
+          }
+        },
+        "key": "properties.name"
+      },
+      "as": "geo"
+    }
+  ],
+  "mark": {
+    "type": "geoshape",
+    "stroke": "white",
+    "strokeWidth": 0.8,
+    "tooltip": true
+  },
+  "encoding": {
+    "shape": {
+      "field": "geo",
+      "type": "geojson"
+    },
+    "color": {
+      "field": "seasonality_index",
+      "type": "quantitative",
+      "title": "Seasonality index",
+      "scale": {
+        "scheme": "plasma",
+        "domain": [
+          0,
+          0.8
+        ]
+      }
+    },
+    "tooltip": [
+      {
+        "field": "state",
+        "type": "nominal",
+        "title": "State"
+      },
+      {
+        "field": "seasonality_index",
+        "type": "quantitative",
+        "title": "Seasonality index",
+        "format": ".3f"
+      },
+      {
+        "field": "wettest_month",
+        "type": "nominal",
+        "title": "Wettest month"
+      },
+      {
+        "field": "wettest_month_rainfall",
+        "type": "quantitative",
+        "title": "Wettest month rainfall",
+        "format": ".2f"
+      },
+      {
+        "field": "driest_month",
+        "type": "nominal",
+        "title": "Driest month"
+      },
+      {
+        "field": "driest_month_rainfall",
+        "type": "quantitative",
+        "title": "Driest month rainfall",
+        "format": ".2f"
+      },
+      {
+        "field": "peak_to_dry_ratio",
+        "type": "quantitative",
+        "title": "Wettest / driest month",
+        "format": ".2f"
+      },
+      {
+        "field": "avg_monthly_rainfall",
+        "type": "quantitative",
+        "title": "Average monthly rainfall",
+        "format": ".2f"
+      },
+      {
+        "field": "wettest_period",
+        "type": "nominal",
+        "title": "Wettest period"
+      }
+    ]
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Disaster Timeline by Type in Malaysia",
+    "font": "Georgia, Times New Roman, serif",
+    "fontSize": 18,
+    "color": "#1f5f99",
+    "subtitleFont": "Arial, sans-serif",
+    "subtitleFontSize": 12,
+    "subtitleColor": "#222222",
+    "anchor": "start"
+  },
+  "width": 820,
+  "height": 360,
+  "data": {
+    "url": "data/disaster_year_type_long.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.count > 0 && toNumber(datum.year) >= 2004 && indexof(lower(datum.disaster_type), 'mass movement') < 0"
+    }
+  ],
+  "mark": {
+    "type": "circle",
+    "opacity": 0.85,
+    "stroke": "white",
+    "strokeWidth": 1,
+    "tooltip": true
+  },
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "ordinal",
+      "title": "Year",
+      "axis": {
+        "labelAngle": -45,
+        "labelOverlap": true,
+        "labelFontSize": 10
+      }
+    },
+    "y": {
+      "field": "disaster_type",
+      "type": "nominal",
+      "title": "Disaster type",
+      "sort": [
+        "Flood",
+        "Storm",
+        "Epidemic",
+        "Drought",
+        "Wildfire",
+        "Earthquake"
+      ],
+      "axis": {
+        "labelLimit": 170
+      }
+    },
+    "size": {
+      "field": "count",
+      "type": "quantitative",
+      "title": "Count",
+      "scale": {
+        "range": [
+          35,
+          650
+        ]
+      },
+      "legend": null
+    },
+    "color": {
+      "field": "disaster_type",
+      "type": "nominal",
+      "title": "Disaster type",
+      "legend": null,
+      "scale": {
+        "domain": [
+          "Flood",
+          "Storm",
+          "Epidemic",
+          "Drought",
+          "Wildfire",
+          "Earthquake"
+        ],
+        "range": [
+          "#0072B2",
+          "#56B4E9",
+          "#E69F00",
+          "#6A3D9A",
+          "#D55E00",
+          "#999999"
+        ]
+      }
+    },
+    "tooltip": [
+      {
+        "field": "year",
+        "type": "ordinal",
+        "title": "Year"
+      },
+      {
+        "field": "disaster_type",
+        "type": "nominal",
+        "title": "Disaster type"
+      },
+      {
+        "field": "count",
+        "type": "quantitative",
+        "title": "Count"
+      }
+    ]
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

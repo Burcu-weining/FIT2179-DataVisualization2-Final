@@ -1,0 +1,122 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Rainfall Anomaly and Flood Disasters Over Time",
+    "subtitle": [
+      "From 2013 to 2023, blue bars show flood disasters and the orange line shows rainfall anomaly from normal.",
+      "Flood counts peak in 2021, while 2022 has the highest above-normal rainfall, showing rainfall is one part of flood risk."
+    ],
+    "font": "Georgia, Times New Roman, serif",
+    "fontSize": 18,
+    "color": "#1f5f99",
+    "subtitleFont": "Arial, sans-serif",
+    "subtitleFontSize": 12,
+    "subtitleColor": "#222222",
+    "anchor": "start"
+  },
+  "width": 820,
+  "height": 420,
+  "data": {
+    "url": "data/flood_rainfall_yearly_relationship.csv"
+  },
+  "transform": [
+    {
+      "filter": "toNumber(datum.year) > 2011"
+    }
+  ],
+  "resolve": {
+    "scale": {
+      "y": "independent"
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "color": "#0072B2",
+        "opacity": 0.82,
+        "tooltip": true
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "title": "Year",
+          "axis": {
+            "labelAngle": 0,
+            "labelOverlap": true
+          }
+        },
+        "y": {
+          "field": "flood_count",
+          "type": "quantitative",
+          "title": "Flood disasters"
+        },
+        "tooltip": [
+          {
+            "field": "year",
+            "type": "ordinal",
+            "title": "Year"
+          },
+          {
+            "field": "flood_count",
+            "type": "quantitative",
+            "title": "Flood disasters"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "color": "#E69F00",
+        "strokeWidth": 3,
+        "point": {
+          "filled": true,
+          "size": 55
+        },
+        "tooltip": true
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "title": "Year",
+          "axis": {
+            "labelAngle": 0,
+            "labelOverlap": true
+          }
+        },
+        "y": {
+          "field": "rainfall_anomaly_pct",
+          "type": "quantitative",
+          "title": "Rainfall anomaly from normal (%)"
+        },
+        "tooltip": [
+          {
+            "field": "year",
+            "type": "ordinal",
+            "title": "Year"
+          },
+          {
+            "field": "rainfall_anomaly_pct",
+            "type": "quantitative",
+            "title": "Rainfall anomaly (%)",
+            "format": ".2f"
+          },
+          {
+            "field": "rainfall_ratio",
+            "type": "quantitative",
+            "title": "Actual / normal rainfall",
+            "format": ".2f"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

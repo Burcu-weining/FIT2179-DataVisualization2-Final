@@ -1,0 +1,168 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Relationship Between Rainfall and Temperature",
+    "subtitle": [
+      "Each point is a month: x = average temperature, y = precipitation, and color identifies the month.",
+      "The downward trend suggests warmer months are generally drier, while the wettest months are slightly cooler."
+    ],
+    "font": "Georgia, Times New Roman, serif",
+    "fontSize": 18,
+    "color": "#1f5f99",
+    "subtitleFont": "Arial, sans-serif",
+    "subtitleFontSize": 12,
+    "subtitleColor": "#222222",
+    "anchor": "start"
+  },
+  "width": 820,
+  "height": 420,
+  "data": {
+    "url": "data/precipitation min ave max temp.csv"
+  },
+  "layer": [
+    {
+      "transform": [
+        {
+          "regression": "Precipitation (mm)",
+          "on": "Average Mean Surface Air Temperature (\u00b0C)"
+        }
+      ],
+      "mark": {
+        "type": "line",
+        "color": "#1f5f99",
+        "strokeWidth": 3,
+        "strokeDash": [
+          6,
+          4
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "Average Mean Surface Air Temperature (\u00b0C)",
+          "type": "quantitative",
+          "title": "Average temperature (\u00b0C)",
+          "axis": {
+            "format": ".2~f"
+          },
+          "scale": {
+            "zero": false
+          }
+        },
+        "y": {
+          "field": "Precipitation (mm)",
+          "type": "quantitative",
+          "title": "Precipitation (mm)"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "size": 260,
+        "opacity": 0.85,
+        "stroke": "white",
+        "strokeWidth": 1.2,
+        "tooltip": true
+      },
+      "encoding": {
+        "x": {
+          "field": "Average Mean Surface Air Temperature (\u00b0C)",
+          "type": "quantitative",
+          "title": "Average temperature (\u00b0C)",
+          "axis": {
+            "format": ".2~f"
+          },
+          "scale": {
+            "zero": false
+          }
+        },
+        "y": {
+          "field": "Precipitation (mm)",
+          "type": "quantitative",
+          "title": "Precipitation (mm)"
+        },
+        "color": {
+          "field": "Category",
+          "type": "ordinal",
+          "title": "Month",
+          "sort": [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec"
+          ],
+          "scale": {
+            "domain": [
+              "Jan",
+              "Feb",
+              "Mar",
+              "Apr",
+              "May",
+              "Jun",
+              "Jul",
+              "Aug",
+              "Sep",
+              "Oct",
+              "Nov",
+              "Dec"
+            ],
+            "range": [
+              "#0072B2",
+              "#56B4E9",
+              "#E69F00",
+              "#CC79A7",
+              "#6A3D9A",
+              "#999999",
+              "#332288",
+              "#88CCEE",
+              "#44AA99",
+              "#AA4499",
+              "#DDCC77",
+              "#000000"
+            ]
+          },
+          "legend": {
+            "labelExpr": "datum.label == 'Jan' ? 'January' : datum.label == 'Feb' ? 'February' : datum.label == 'Mar' ? 'March' : datum.label == 'Apr' ? 'April' : datum.label == 'May' ? 'May' : datum.label == 'Jun' ? 'June' : datum.label == 'Jul' ? 'July' : datum.label == 'Aug' ? 'August' : datum.label == 'Sep' ? 'September' : datum.label == 'Oct' ? 'October' : datum.label == 'Nov' ? 'November' : 'December'"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "Category",
+            "type": "ordinal",
+            "title": "Month"
+          },
+          {
+            "field": "Precipitation (mm)",
+            "type": "quantitative",
+            "format": ".2f"
+          },
+          {
+            "field": "Average Mean Surface Air Temperature (\u00b0C)",
+            "type": "quantitative",
+            "title": "Average temperature (\u00b0C)",
+            "format": ".2f"
+          },
+          {
+            "field": "Precipitation amount during wettest days (mm)",
+            "type": "quantitative",
+            "title": "Wettest-day rainfall",
+            "format": ".2f"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

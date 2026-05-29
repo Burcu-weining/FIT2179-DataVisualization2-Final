@@ -1,16 +1,23 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Average Monthly Rainfall in Malaysia",
-    "subtitle": "Rainfall changes across the year, showing seasonal variation.",
+    "text": "Average Rainfall by Month",
+    "subtitle": [
+      "Malaysia receives rainfall throughout the year, but the intensity differs by month and by state.",
+      "These charts show when rainfall increases and which states record higher average rainfall."
+    ],
+    "font": "Georgia, Times New Roman, serif",
     "fontSize": 18,
-    "subtitleFontSize": 12,
+    "color": "#1f5f99",
+    "subtitleFont": "Arial, sans-serif",
+    "subtitleFontSize": 14,
+    "subtitleColor": "#222222",
     "anchor": "start"
   },
-  "width": 720,
-  "height": 360,
+  "width": 820,
+  "height": 380,
   "data": {
-    "url": "data/rainfall_monthly_clean.csv"
+    "url": "data/monthly_rainfall.csv"
   },
   "mark": {
     "type": "line",
@@ -19,10 +26,34 @@
   },
   "encoding": {
     "x": {
-      "field": "month_name",
-      "type": "ordinal",
+      "field": "month",
+      "type": "quantitative",
       "title": "Month",
-      "sort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+      "scale": {
+        "domain": [
+          1,
+          12
+        ]
+      },
+      "axis": {
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "labelAngle": 0,
+        "tickMinStep": 1,
+        "labelExpr": "datum.value == 1 ? 'January' : datum.value == 2 ? 'February' : datum.value == 3 ? 'March' : datum.value == 4 ? 'April' : datum.value == 5 ? 'May' : datum.value == 6 ? 'June' : datum.value == 7 ? 'July' : datum.value == 8 ? 'August' : datum.value == 9 ? 'September' : datum.value == 10 ? 'October' : datum.value == 11 ? 'November' : 'December'"
+      }
     },
     "y": {
       "field": "avg_rainfall_mm",
@@ -30,8 +61,16 @@
       "title": "Average rainfall"
     },
     "tooltip": [
-      {"field": "month_name", "type": "ordinal", "title": "Month"},
-      {"field": "avg_rainfall_mm", "type": "quantitative", "title": "Average rainfall", "format": ".2f"}
+      {
+        "field": "month",
+        "type": "quantitative",
+        "format": "d"
+      },
+      {
+        "field": "avg_rainfall_mm",
+        "type": "quantitative",
+        "format": ".2f"
+      }
     ]
   },
   "config": {

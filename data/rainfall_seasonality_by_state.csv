@@ -1,0 +1,13 @@
+state,avg_monthly_rainfall,seasonality_index,wettest_month,wettest_month_rainfall,driest_month,driest_month_rainfall,peak_to_dry_ratio,wettest_period
+Terengganu,8.87,0.757,Nov,25.88,Feb,3.49,7.42,Northeast monsoon peak
+Kelantan,7.72,0.614,Nov,17.37,Feb,2.68,6.48,Northeast monsoon peak
+Perlis,5.1,0.489,Oct,9.04,Jan,1.2,7.53,Late-year transition peak
+Kedah,6.25,0.456,Oct,11.93,Jan,2.21,5.4,Late-year transition peak
+Pulau Pinang,6.34,0.455,Oct,13.43,Feb,3.21,4.18,Late-year transition peak
+Pahang,6.13,0.419,Dec,11.82,Mar,3.3,3.58,Northeast monsoon peak
+Kuala Lumpur,6.61,0.335,Nov,10.6,Jan,4.27,2.48,Northeast monsoon peak
+Selangor,6.61,0.334,Nov,10.6,Jan,4.27,2.48,Northeast monsoon peak
+Perak,6.8,0.32,Nov,10.33,Jul,4.15,2.49,Northeast monsoon peak
+Melaka,5.64,0.31,Nov,9.28,Jan,2.33,3.98,Northeast monsoon peak
+Negeri Sembilan,5.16,0.308,Nov,8.83,Jan,2.91,3.03,Northeast monsoon peak
+Johor,6.48,0.278,Nov,10.33,Feb,4.68,2.21,Northeast monsoon peak

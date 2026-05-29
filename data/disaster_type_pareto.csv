@@ -1,0 +1,7 @@
+disaster_type,count,cumulative_count,cumulative_pct
+Flood,70.0,70.0,72.92
+Epidemic,11.0,81.0,84.38
+Storm,7.0,88.0,91.67
+Wildfire,4.0,92.0,95.83
+Drought,2.0,94.0,97.92
+Earthquake,2.0,96.0,100.0

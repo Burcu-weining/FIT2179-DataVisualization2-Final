@@ -1,0 +1,12 @@
+state_code,state_name,district_year_records,flood_records,districts,avg_annual_rainfall_mm,flood_rate_pct
+101,Johor,66,23,6,2440.05,34.85
+102,Kedah,55,29,5,2207.83,52.73
+103,Kelantan,44,21,4,2364.3,47.73
+104,Melaka,33,17,3,2391.06,51.52
+105,Negeri Sembilan,22,10,2,2471.76,45.45
+106,Pahang,66,45,6,2480.74,68.18
+108,Perak,66,36,6,2304.83,54.55
+109,Perlis,77,46,6,2531.28,59.74
+111,Terengganu,77,25,7,2813.93,32.47
+112,Sabah,154,51,14,2798.21,33.12
+113,Sarawak,165,44,13,3364.33,26.67

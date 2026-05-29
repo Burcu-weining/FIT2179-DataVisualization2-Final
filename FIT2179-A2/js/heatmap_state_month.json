@@ -1,46 +1,123 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Rainfall Heatmap by State and Month",
-    "subtitle": "Darker cells show heavier rainfall for each state-month combination.",
+    "text": "Rainfall Heatmap by State and Month in West Malaysia",
+    "subtitle": "Select a month to compare average rainfall across West Malaysian states.",
+    "font": "Georgia, Times New Roman, serif",
     "fontSize": 18,
+    "color": "#1f5f99",
+    "subtitleFont": "Arial, sans-serif",
     "subtitleFontSize": 12,
+    "subtitleColor": "#222222",
     "anchor": "start"
   },
-  "width": 720,
-  "height": 420,
+  "width": 820,
+  "height": 520,
+  "params": [
+    {
+      "name": "SelectedMonth",
+      "value": 1,
+      "bind": {
+        "input": "select",
+        "name": "Select month: ",
+        "options": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "labels": [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec"
+        ]
+      }
+    }
+  ],
   "data": {
-    "url": "data/rainfall_state_month_clean.csv"
+    "url": "data/state_monthly_rainfall_clean.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.month == SelectedMonth"
+    },
+    {
+      "lookup": "state",
+      "from": {
+        "data": {
+          "url": "data/malaysia_states_simple.geojson",
+          "format": {
+            "type": "json",
+            "property": "features"
+          }
+        },
+        "key": "properties.name"
+      },
+      "as": "geo"
+    }
+  ],
+  "projection": {
+    "type": "mercator"
   },
   "mark": {
-    "type": "rect",
+    "type": "geoshape",
+    "stroke": "white",
+    "strokeWidth": 0.8,
     "tooltip": true
   },
   "encoding": {
-    "x": {
-      "field": "month_name",
-      "type": "ordinal",
-      "title": "Month",
-      "sort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-    },
-    "y": {
-      "field": "state",
-      "type": "nominal",
-      "title": "State"
+    "shape": {
+      "field": "geo",
+      "type": "geojson"
     },
     "color": {
       "field": "avg_rainfall_mm",
       "type": "quantitative",
       "title": "Average rainfall",
-      "scale": {"scheme": "blues"}
+    "scale": {
+      "scheme": "plasma",
+      "domainMin": 0
+    }
     },
     "tooltip": [
-      {"field": "state", "type": "nominal", "title": "State"},
-      {"field": "month_name", "type": "ordinal", "title": "Month"},
-      {"field": "avg_rainfall_mm", "type": "quantitative", "title": "Average rainfall", "format": ".2f"}
+      {
+        "field": "state",
+        "type": "nominal",
+        "title": "State"
+      },
+      {
+        "field": "month_name",
+        "type": "ordinal",
+        "title": "Month"
+      },
+      {
+        "field": "avg_rainfall_mm",
+        "type": "quantitative",
+        "title": "Average rainfall",
+        "format": ".2f"
+      }
     ]
   },
   "config": {
-    "view": {"stroke": null}
+    "view": {
+      "stroke": null
+    }
   }
 }

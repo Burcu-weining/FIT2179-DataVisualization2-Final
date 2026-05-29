@@ -1,0 +1,157 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Radar Profile of Most Seasonal Rainfall States",
+    "subtitle": [
+      "Each line compares a highly seasonal rainfall state across four normalised rainfall profile metrics.",
+      "Wider shapes indicate stronger monthly rainfall totals, sharper wet-season peaks, or higher wet/dry contrast."
+    ],
+    "font": "Georgia, Times New Roman, serif",
+    "fontSize": 18,
+    "color": "#1f5f99",
+    "subtitleFont": "Arial, sans-serif",
+    "subtitleFontSize": 12,
+    "subtitleColor": "#222222",
+    "anchor": "start"
+  },
+  "width": 720,
+  "height": 560,
+  "layer": [
+    {
+      "data": {
+        "url": "data/rainfall_state_radar_axes.csv"
+      },
+      "mark": {
+        "type": "rule",
+        "stroke": "#c9d4df",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": {
+          "datum": 0,
+          "type": "quantitative"
+        },
+        "y": {
+          "datum": 0,
+          "type": "quantitative"
+        },
+        "x2": {
+          "field": "x"
+        },
+        "y2": {
+          "field": "y"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "data/rainfall_state_radar_axes.csv"
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "color": "#222222"
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "metric"
+        },
+        "tooltip": [
+          {
+            "field": "metric",
+            "type": "nominal"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/rainfall_state_radar.csv"
+      },
+      "mark": {
+        "type": "line",
+        "point": true,
+        "strokeWidth": 2,
+        "opacity": 0.78,
+        "tooltip": true
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "axis": null,
+          "scale": {
+            "domain": [
+              -1.18,
+              1.18
+            ]
+          }
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "axis": null,
+          "scale": {
+            "domain": [
+              -1.18,
+              1.18
+            ]
+          }
+        },
+        "detail": {
+          "field": "state"
+        },
+        "order": {
+          "field": "point_order",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "state",
+          "type": "nominal",
+          "title": "State",
+          "scale": {
+            "scheme": "tableau10"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "metric",
+            "type": "nominal",
+            "title": "Metric"
+          },
+          {
+            "field": "raw_value",
+            "type": "quantitative",
+            "title": "Original value",
+            "format": ".2f"
+          },
+          {
+            "field": "normalised_value",
+            "type": "quantitative",
+            "title": "Normalised score",
+            "format": ".2f"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

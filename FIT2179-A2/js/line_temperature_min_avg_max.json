@@ -1,0 +1,69 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+      "text": "Monthly Minimum, Average, and Maximum Temperature",
+      "subtitle": "Temperature stays relatively stable throughout the year, but still has its high and low.",
+      "font": "Georgia, Times New Roman, serif",
+      "fontSize": 18,
+      "color": "#1f5f99",
+      "subtitleFont": "Arial, sans-serif",
+      "subtitleFontSize": 12,
+      "subtitleColor": "#222222",
+      "anchor": "start"
+    },
+    "width": 720,
+    "height": 360,
+    "data": {
+      "url": "data/temperature_monthly_clean.csv"
+    },
+    "transform": [
+      {
+        "fold": ["min_temp", "avg_temp", "max_temp"],
+        "as": ["Temperature Type Raw", "Temperature"]
+      },
+      {
+        "calculate": "datum['Temperature Type Raw'] == 'min_temp' ? 'Minimum Temperature' : datum['Temperature Type Raw'] == 'avg_temp' ? 'Average Temperature' : 'Maximum Temperature'",
+        "as": "Temperature Type"
+      }
+    ],
+    "mark": {
+      "type": "line",
+      "point": true,
+      "tooltip": true
+    },
+    "encoding": {
+      "x": {
+        "field": "month_name",
+        "type": "ordinal",
+        "title": "Month",
+        "sort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+      },
+      "y": {
+        "field": "Temperature",
+        "type": "quantitative",
+        "title": "Temperature (°C)"
+      },
+      "color": {
+        "field": "Temperature Type",
+        "type": "nominal",
+        "title": "Temperature Type",
+        "scale": {
+          "domain": [
+            "Minimum Temperature",
+            "Average Temperature",
+            "Maximum Temperature"
+          ]
+        }
+      },
+      "tooltip": [
+        {"field": "month_name", "type": "ordinal", "title": "Month"},
+        {"field": "Temperature Type", "type": "nominal", "title": "Type"},
+        {"field": "Temperature", "type": "quantitative", "title": "Temperature", "format": ".2f"}
+      ]
+    },
+    "config": {
+      "view": {
+        "stroke": null
+      }
+    }
+  }

@@ -1,0 +1,124 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Proportional Symbol Map of State Flood Occurrence",
+    "subtitle": [
+      "State outlines provide geographic context, while circle size shows the share of district-year records marked as flood events.",
+      "This changes the flood-risk view from a filled-area map into a symbol map."
+    ],
+    "font": "Georgia, Times New Roman, serif",
+    "fontSize": 18,
+    "color": "#1f5f99",
+    "subtitleFont": "Arial, sans-serif",
+    "subtitleFontSize": 12,
+    "subtitleColor": "#222222",
+    "anchor": "start"
+  },
+  "width": 820,
+  "height": 430,
+  "projection": {
+    "type": "mercator"
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/malaysia_states_simple.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#eaf0f4",
+        "stroke": "white",
+        "strokeWidth": 0.8
+      }
+    },
+    {
+      "data": {
+        "url": "data/malaysia_flood_state_symbol_map.csv"
+      },
+      "mark": {
+        "type": "circle",
+        "stroke": "#123b5d",
+        "strokeWidth": 1,
+        "opacity": 0.82,
+        "tooltip": true
+      },
+      "encoding": {
+        "longitude": {
+          "field": "longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "latitude",
+          "type": "quantitative"
+        },
+        "size": {
+          "field": "flood_rate_pct",
+          "type": "quantitative",
+          "title": "Flood occurrence (%)",
+          "scale": {
+            "domainMin": 0,
+            "range": [
+              180,
+              2800
+            ]
+          },
+          "legend": {
+            "orient": "right",
+            "titleLimit": 180
+          }
+        },
+        "color": {
+          "field": "flood_rate_pct",
+          "type": "quantitative",
+          "title": "Flood occurrence (%)",
+          "scale": {
+            "scheme": "cividis",
+            "domainMin": 0
+          },
+          "legend": {
+            "orient": "right",
+            "titleLimit": 180
+          }
+        },
+        "tooltip": [
+          {
+            "field": "state_name",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "flood_rate_pct",
+            "type": "quantitative",
+            "title": "Flood occurrence (%)",
+            "format": ".2f"
+          },
+          {
+            "field": "flood_records",
+            "type": "quantitative",
+            "title": "Flood records"
+          },
+          {
+            "field": "district_year_records",
+            "type": "quantitative",
+            "title": "District-year records"
+          },
+          {
+            "field": "avg_annual_rainfall_mm",
+            "type": "quantitative",
+            "title": "Average annual rainfall (mm)",
+            "format": ".2f"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

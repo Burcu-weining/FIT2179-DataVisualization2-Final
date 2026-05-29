@@ -2,44 +2,77 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "Natural Disaster Types Recorded in Malaysia",
-    "subtitle": "Floods are the most common disaster type in the dataset.",
+    "subtitle": "Floods dominate the disaster record.",
+    "font": "Georgia, Times New Roman, serif",
     "fontSize": 18,
+    "color": "#1f5f99",
+    "subtitleFont": "Arial, sans-serif",
     "subtitleFontSize": 12,
+    "subtitleColor": "#222222",
     "anchor": "start"
   },
-  "width": 720,
-  "height": 380,
+  "width": 620,
+  "height": 360,
   "data": {
-    "url": "data/disaster_type_clean.csv"
+    "url": "data/disaster_type_summary.csv"
   },
+  "transform": [
+    {
+      "filter": "indexof(lower(datum.disaster_type), 'mass movement') < 0"
+    }
+  ],
   "mark": {
-    "type": "bar",
+    "type": "arc",
+    "innerRadius": 45,
+    "outerRadius": 145,
     "tooltip": true
   },
   "encoding": {
-    "x": {
+    "theta": {
       "field": "count",
       "type": "quantitative",
-      "title": "Recorded count"
-    },
-    "y": {
-      "field": "disaster_type",
-      "type": "nominal",
-      "sort": "-x",
-      "title": "Disaster type"
+      "title": "Count"
     },
     "color": {
-      "field": "count",
-      "type": "quantitative",
-      "scale": {"scheme": "orangered"},
-      "legend": null
+      "field": "disaster_type",
+      "type": "nominal",
+      "title": "Disaster type",
+      "legend": {
+        "orient": "right"
+      },
+      "scale": {
+        "domain": [
+          "Flood",
+          "Storm",
+          "Epidemic",
+          "Drought",
+          "Wildfire",
+          "Earthquake"
+        ],
+        "range": [
+          "#0072B2",
+          "#56B4E9",
+          "#E69F00",
+          "#6A3D9A",
+          "#D55E00",
+          "#999999"
+        ]
+      }
     },
     "tooltip": [
-      {"field": "disaster_type", "type": "nominal", "title": "Disaster type"},
-      {"field": "count", "type": "quantitative", "title": "Count"}
+      {
+        "field": "disaster_type",
+        "type": "nominal"
+      },
+      {
+        "field": "count",
+        "type": "quantitative"
+      }
     ]
   },
   "config": {
-    "view": {"stroke": null}
+    "view": {
+      "stroke": null
+    }
   }
 }

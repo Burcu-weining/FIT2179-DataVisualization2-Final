@@ -1,0 +1,163 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Natural Disaster Types",
+    "subtitle": [
+      "Bars show the number of recorded disasters; the black line shows the cumulative percentage as each type is added.",
+      "Floods alone make up most records, and floods plus epidemics already account for over 80% of the disaster total."
+    ],
+    "font": "Georgia, Times New Roman, serif",
+    "fontSize": 18,
+    "color": "#1f5f99",
+    "subtitleFont": "Arial, sans-serif",
+    "subtitleFontSize": 12,
+    "subtitleColor": "#222222",
+    "anchor": "start"
+  },
+  "width": 820,
+  "height": 420,
+  "data": {
+    "url": "data/disaster_type_pareto.csv"
+  },
+  "resolve": {
+    "scale": {
+      "y": "independent"
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "tooltip": true,
+        "opacity": 0.86
+      },
+      "encoding": {
+        "x": {
+          "field": "disaster_type",
+          "type": "nominal",
+          "title": "Disaster type",
+          "sort": "-y",
+          "axis": {
+            "labelAngle": -25,
+            "labelLimit": 120
+          }
+        },
+        "y": {
+          "field": "count",
+          "type": "quantitative",
+          "title": "Recorded disasters"
+        },
+        "color": {
+          "field": "disaster_type",
+          "type": "nominal",
+          "legend": null,
+          "scale": {
+            "domain": [
+              "Flood",
+              "Storm",
+              "Epidemic",
+              "Drought",
+              "Wildfire",
+              "Earthquake"
+            ],
+            "range": [
+              "#0072B2",
+              "#56B4E9",
+              "#E69F00",
+              "#6A3D9A",
+              "#D55E00",
+              "#999999"
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "disaster_type",
+            "type": "nominal",
+            "title": "Disaster type"
+          },
+          {
+            "field": "count",
+            "type": "quantitative",
+            "title": "Count",
+            "format": ".0f"
+          },
+          {
+            "field": "cumulative_pct",
+            "type": "quantitative",
+            "title": "Cumulative share (%)",
+            "format": ".2f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "color": "#111111",
+        "strokeWidth": 3,
+        "point": {
+          "filled": true,
+          "size": 70
+        },
+        "tooltip": true
+      },
+      "encoding": {
+        "x": {
+          "field": "disaster_type",
+          "type": "nominal",
+          "sort": "-y"
+        },
+        "y": {
+          "field": "cumulative_pct",
+          "type": "quantitative",
+          "title": "Cumulative share (%)",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ]
+          },
+          "axis": {
+            "orient": "right"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "disaster_type",
+            "type": "nominal",
+            "title": "Disaster type"
+          },
+          {
+            "field": "cumulative_pct",
+            "type": "quantitative",
+            "title": "Cumulative share (%)",
+            "format": ".2f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "color": "#777777",
+        "strokeDash": [
+          5,
+          4
+        ],
+        "opacity": 0.65
+      },
+      "encoding": {
+        "y": {
+          "datum": 80,
+          "type": "quantitative"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}
